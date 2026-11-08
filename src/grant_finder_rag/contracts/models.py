@@ -31,3 +31,12 @@ class SparseVec(BaseModel):
 
     indices: list[int]
     values: list[float]
+
+
+class Candidate(BaseModel):
+    """검색 결과 1건. payload에는 색인 시 저장한 값이 들어 있다."""
+
+    notice_id: str
+    score: float
+    rerank_score: float | None = None
+    payload: dict = {}
