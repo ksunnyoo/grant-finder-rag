@@ -1,6 +1,6 @@
+import datetime
 import json
 import re
-import datetime
 from collections import Counter
 from pathlib import Path
 
@@ -44,9 +44,9 @@ print("통합공고 여부:", Counter(x.get("intg_pbanc_yn") for x in ann))
 
 for f in ["pbanc_ctnt", "aply_trgt", "aply_trgt_ctnt", "biz_enyy", "biz_trgt_age", "supt_regin", "pbanc_rcpt_end_dt"]:
     empty = sum(1 for x in ann if not x.get(f))
-    print("빈값", f, empty, "(%d%%)" % (empty * 100 // len(ann)))
+    print("빈값", f, empty, f"({empty * 100 // len(ann)}%)")
 
-biz_names = set(norm(x.get("supt_biz_titl_nm")) for x in biz)
+biz_names = {norm(x.get("supt_biz_titl_nm")) for x in biz}
 integrated = [x for x in ann if x.get("intg_pbanc_yn") == "Y"]
 linked = sum(1 for x in integrated if norm(x.get("intg_pbanc_biz_nm")) in biz_names)
 print("통합공고", len(integrated), "건 중 사업소개와 이름이 일치:", linked)

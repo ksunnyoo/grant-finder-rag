@@ -1,7 +1,7 @@
+import datetime
 import json
 import os
 import time
-import datetime
 from pathlib import Path
 
 import httpx
@@ -32,7 +32,7 @@ def collect(operation, folder):
     page = 1
     total = 0
     while True:
-        file = out_dir / ("page_%03d.json" % page)
+        file = out_dir / f"page_{page:03d}.json"
         if file.exists():
             data = json.loads(file.read_text(encoding="utf-8"))
         else:
