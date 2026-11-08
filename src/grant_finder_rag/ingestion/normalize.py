@@ -68,3 +68,15 @@ def parse_age_ranges(value) -> list[tuple[int, int]]:
         elif "이상" in token and len(numbers) == 1:
             ranges.append((numbers[0], 120))
     return ranges
+
+
+def safe_text(value) -> str | None:
+    """정제 후 전화번호·이메일을 가린다. 비어 있으면 None."""
+    text = clean_text(value)
+    return mask_contacts(text) if text else None
+
+
+def match_key(value) -> str:
+    """이름 비교용 키. 글자·숫자 외의 문자와 공백을 모두 뺀다."""
+    text = clean_text(value) or ""
+    return re.sub(r"[^0-9A-Za-z가-힣]", "", text)

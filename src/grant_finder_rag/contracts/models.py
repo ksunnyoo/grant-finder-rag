@@ -22,3 +22,5 @@ class Notice(BaseModel):
     url: str | None = None
     is_integrated: bool = False
     integrated_name: str | None = None
+    business_intro: str | None = None
+    linked_business: bool = False
