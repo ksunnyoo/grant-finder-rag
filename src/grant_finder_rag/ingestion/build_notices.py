@@ -13,11 +13,11 @@ from grant_finder_rag.ingestion.normalize import (
 )
 
 APPLY_METHOD_FIELDS = [
-    ("aply_mthd_onli_rcpt_istc", "온라인"),
-    ("aply_mthd_eml_rcpt_istc", "이메일"),
-    ("aply_mthd_vst_rcpt_istc", "방문"),
-    ("aply_mthd_pssr_rcpt_istc", "우편"),
-    ("aply_mthd_fax_rcpt_istc", "팩스"),
+    ("aply_mthd_onli_rcpt_istc", "온라인 접수"),
+    ("aply_mthd_eml_rcpt_istc", "이메일 접수"),
+    ("aply_mthd_vst_rcpt_istc", "방문 접수"),
+    ("aply_mthd_pssr_rcpt_istc", "우편 접수"),
+    ("aply_mthd_fax_rcpt_istc", "팩스 접수"),
     ("aply_mthd_etc_istc", "기타"),
 ]
 
@@ -53,7 +53,7 @@ def _apply_method(raw: dict) -> str | None:
     for field, label in APPLY_METHOD_FIELDS:
         text = _safe_text(raw.get(field))
         if text:
-            lines.append(f"[{label}] {text}")
+            lines.append(f"{label}: {text}")
     return "\n".join(lines) or None
 
 

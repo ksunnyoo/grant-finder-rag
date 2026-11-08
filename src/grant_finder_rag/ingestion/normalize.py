@@ -21,7 +21,11 @@ def clean_text(value) -> str | None:
     """HTML 엔티티 해제, 줄바꿈·공백 정리. 비어 있으면 None."""
     if value is None:
         return None
-    text = html.unescape(str(value))
+    text = str(value)
+    unescaped = html.unescape(text)
+    while unescaped != text:
+        text = unescaped
+        unescaped = html.unescape(text)
     text = text.replace("\r\n", "\n").replace("\r", "\n")
     text = re.sub(r"[ \t]+", " ", text)
     text = re.sub(r"\n{3,}", "\n\n", text)

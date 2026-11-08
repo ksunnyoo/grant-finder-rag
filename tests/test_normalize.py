@@ -54,3 +54,11 @@ def test_parse_age_ranges():
     assert parse_age_ranges(value) == [(0, 19), (20, 39), (40, 120)]
     assert parse_age_ranges("만 20세 미만,만 40세 이상") == [(0, 19), (40, 120)]
     assert parse_age_ranges(None) == []
+
+
+def test_clean_text_double_escaped():
+    assert clean_text("A&amp;amp;B") == "A&B"
+
+
+def test_clean_text_many_levels_escaped():
+    assert clean_text("a?x=1&amp;amp;amp;amp;amp;b=2") == "a?x=1&b=2"

@@ -30,7 +30,7 @@ def test_to_notice_full():
     assert n.age_ranges == [(20, 39)]
     assert n.end_date == date(2026, 11, 30)
     assert n.content == "문의 [전화번호]"
-    assert n.apply_method == "[온라인] K-Startup 접수"
+    assert n.apply_method == "온라인 접수: K-Startup 접수"
     assert n.is_integrated is True
 
 
