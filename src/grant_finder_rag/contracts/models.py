@@ -24,3 +24,10 @@ class Notice(BaseModel):
     integrated_name: str | None = None
     business_intro: str | None = None
     linked_business: bool = False
+
+
+class SparseVec(BaseModel):
+    """희소 벡터: 단어 번호와 가중치."""
+
+    indices: list[int]
+    values: list[float]
