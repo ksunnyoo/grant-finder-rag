@@ -1,0 +1,573 @@
+{
+  "as_of": "2026-11-06",
+  "k": 5,
+  "threshold": "0.05",
+  "retrieval": {
+    "C0 dense": {
+      "hit_at_k": 1.0,
+      "mrr": 0.8444444444444444,
+      "precision": {
+        "filter": 0.08,
+        "date": 0.07500000000000001,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 32.83831249791547,
+      "lookup_misses": []
+    },
+    "C1 +hybrid": {
+      "hit_at_k": 1.0,
+      "mrr": 0.8333333333333334,
+      "precision": {
+        "filter": 0.06666666666666667,
+        "date": 0.07500000000000001,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 133.39141699907486,
+      "lookup_misses": []
+    },
+    "C2 +filter": {
+      "hit_at_k": 0.9333333333333333,
+      "mrr": 0.9333333333333333,
+      "precision": {
+        "filter": 1.0,
+        "date": 1.0,
+        "multi": 1.0
+      },
+      "empty": 0,
+      "median_ms": 208.4800835000351,
+      "lookup_misses": [
+        "G012"
+      ]
+    },
+    "C3 +rerank": {
+      "hit_at_k": 0.9333333333333333,
+      "mrr": 0.9333333333333333,
+      "precision": {
+        "filter": 1.0,
+        "date": 1.0,
+        "multi": 1.0
+      },
+      "empty": 0,
+      "median_ms": 3037.542875001236,
+      "lookup_misses": [
+        "G012"
+      ]
+    }
+  },
+  "e2e": {
+    "n_total": 35,
+    "n_error": 0,
+    "refusal_accuracy": 1.0,
+    "over_refusal": 0.037037037037037035,
+    "citation_rate": 1.0,
+    "lookup_gold_in_sources": 0.9333333333333333,
+    "n_no_answer": 8,
+    "n_answerable": 27
+  },
+  "e2e_rows": [
+    {
+      "qid": "G043",
+      "type": "no_answer",
+      "question": "내일 서울 날씨 어때?",
+      "refused": true,
+      "reason": "LOW_RELEVANCE",
+      "provider": "gemini",
+      "source_ids": [],
+      "cited": false,
+      "gold_in_sources": false,
+      "latency_ms": 4294
+    },
+    {
+      "qid": "G044",
+      "type": "no_answer",
+      "question": "비트코인 지금 시세 알려줘",
+      "refused": true,
+      "reason": "LOW_RELEVANCE",
+      "provider": null,
+      "source_ids": [],
+      "cited": false,
+      "gold_in_sources": false,
+      "latency_ms": 2821
+    },
+    {
+      "qid": "G045",
+      "type": "no_answer",
+      "question": "삼성전자 신입 채용 일정 알려줘",
+      "refused": true,
+      "reason": "LOW_RELEVANCE",
+      "provider": null,
+      "source_ids": [],
+      "cited": false,
+      "gold_in_sources": false,
+      "latency_ms": 3093
+    },
+    {
+      "qid": "G046",
+      "type": "no_answer",
+      "question": "아파트 청약 일정 알려줘",
+      "refused": true,
+      "reason": "LOW_RELEVANCE",
+      "provider": null,
+      "source_ids": [],
+      "cited": false,
+      "gold_in_sources": false,
+      "latency_ms": 3068
+    },
+    {
+      "qid": "G047",
+      "type": "no_answer",
+      "question": "대학생 국가장학금 신청 방법 알려줘",
+      "refused": true,
+      "reason": "LOW_RELEVANCE",
+      "provider": "gemini",
+      "source_ids": [],
+      "cited": false,
+      "gold_in_sources": false,
+      "latency_ms": 4163
+    },
+    {
+      "qid": "G048",
+      "type": "no_answer",
+      "question": "강남 맛집 추천해줘",
+      "refused": true,
+      "reason": "LOW_RELEVANCE",
+      "provider": null,
+      "source_ids": [],
+      "cited": false,
+      "gold_in_sources": false,
+      "latency_ms": 3153
+    },
+    {
+      "qid": "G049",
+      "type": "no_answer",
+      "question": "파이썬 설치하는 방법 알려줘",
+      "refused": true,
+      "reason": "LOW_RELEVANCE",
+      "provider": null,
+      "source_ids": [],
+      "cited": false,
+      "gold_in_sources": false,
+      "latency_ms": 3054
+    },
+    {
+      "qid": "G050",
+      "type": "no_answer",
+      "question": "해외 VC 직접 투자 받는 방법 알려줘",
+      "refused": true,
+      "reason": "LOW_RELEVANCE",
+      "provider": null,
+      "source_ids": [],
+      "cited": false,
+      "gold_in_sources": false,
+      "latency_ms": 3082
+    },
+    {
+      "qid": "G001",
+      "type": "lookup",
+      "question": "대전 테스트베드 연계사업 공모 지원 내용이 뭐야?",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179677"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4005
+    },
+    {
+      "qid": "G002",
+      "type": "lookup",
+      "question": "맞춤형 해외 저작권 바우처 지원' 사업 수행기관 지원 내용이 뭐야?",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179722"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4248
+    },
+    {
+      "qid": "G003",
+      "type": "lookup",
+      "question": "논산시 사회적경제 창업 아카데미 지원 내용이 뭐야?",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179591"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4739
+    },
+    {
+      "qid": "G004",
+      "type": "lookup",
+      "question": "제6차 해양수산 투자기관협의회 지원 내용이 뭐야?",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179615"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4364
+    },
+    {
+      "qid": "G005",
+      "type": "lookup",
+      "question": "서울마포 대학연계 AI 청년창업포럼 지원 내용이 뭐야?",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179627"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4322
+    },
+    {
+      "qid": "G006",
+      "type": "lookup",
+      "question": "대덕 원스톱 Bridge 연계 제 108회 대전창업포럼 지원 내용이 뭐야?",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179664"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4604
+    },
+    {
+      "qid": "G007",
+      "type": "lookup",
+      "question": "위치정보 보호조치 교육 지원 내용이 뭐야?",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179679"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4667
+    },
+    {
+      "qid": "G008",
+      "type": "lookup",
+      "question": "판교테크노밸리 입주기업 임대보증금 지원사업 지원 내용이 뭐야?",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "176855"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4826
+    },
+    {
+      "qid": "G009",
+      "type": "lookup",
+      "question": "청년 쿡 비즈니스·푸드테크 센터 스타트업 지원 내용이 뭐야?",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179687"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 11912
+    },
+    {
+      "qid": "G010",
+      "type": "lookup",
+      "question": "신개념 세대융합 청년창업 지원 멘티 상시 지원 내용이 뭐야?",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "176208"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 18831
+    },
+    {
+      "qid": "G011",
+      "type": "lookup",
+      "question": "중동상황 대응 「수출위기 극복 물류지원금」지원사업 지원 내용이 뭐야?",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179018"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 6173
+    },
+    {
+      "qid": "G012",
+      "type": "lookup",
+      "question": "글로벌 진출 초기 챙겨야 할 GEO 전략 지원 내용이 뭐야?",
+      "refused": true,
+      "reason": "LOW_RELEVANCE",
+      "provider": "gemini",
+      "source_ids": [],
+      "cited": false,
+      "gold_in_sources": false,
+      "latency_ms": 1574
+    },
+    {
+      "qid": "G013",
+      "type": "lookup",
+      "question": "6회 호남 엔젤리더스포럼 in 전북 지원 내용이 뭐야?",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179719"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4387
+    },
+    {
+      "qid": "G014",
+      "type": "lookup",
+      "question": "포스코기술투자 TIPS Scout 참여 스타트업 지원 내용이 뭐야?",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179686"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4243
+    },
+    {
+      "qid": "G015",
+      "type": "lookup",
+      "question": "전문분야 창업멘토링 11월 지원 내용이 뭐야?",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179629"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4319
+    },
+    {
+      "qid": "G016",
+      "type": "filter",
+      "question": "서울 지역 지원사업 알려줘",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179018",
+        "176739",
+        "176741",
+        "178445",
+        "179723"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4617
+    },
+    {
+      "qid": "G018",
+      "type": "filter",
+      "question": "서울 사업 중 이번 달 안에 마감되는 것 알려줘",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179723",
+        "179555"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 5780
+    },
+    {
+      "qid": "G020",
+      "type": "filter",
+      "question": "경기 예비창업자가 신청할 수 있는 사업 알려줘",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179673",
+        "177922",
+        "179701",
+        "179606"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4570
+    },
+    {
+      "qid": "G022",
+      "type": "filter",
+      "question": "충남 지역 지원사업 알려줘",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "177681",
+        "179662",
+        "177357",
+        "179691"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4462
+    },
+    {
+      "qid": "G024",
+      "type": "filter",
+      "question": "충남 사업 중 이번 달 안에 마감되는 것 알려줘",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179543",
+        "179691",
+        "179736",
+        "177681"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4566
+    },
+    {
+      "qid": "G026",
+      "type": "filter",
+      "question": "부산 예비창업자가 신청할 수 있는 사업 알려줘",
+      "refused": false,
+      "reason": null,
+      "provider": "groq",
+      "source_ids": [
+        "179696",
+        "176563",
+        "179533",
+        "179694"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 8769
+    },
+    {
+      "qid": "G028",
+      "type": "filter",
+      "question": "경남 지역 지원사업 알려줘",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "177113",
+        "179599",
+        "178453",
+        "176978",
+        "179552"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4773
+    },
+    {
+      "qid": "G030",
+      "type": "filter",
+      "question": "경남 사업 중 이번 달 안에 마감되는 것 알려줘",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179599",
+        "179520"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4701
+    },
+    {
+      "qid": "G032",
+      "type": "date",
+      "question": "다음 달 마감되는 사업 알려줘",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "179675",
+        "178017",
+        "178489",
+        "179018",
+        "177357"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4533
+    },
+    {
+      "qid": "G034",
+      "type": "date",
+      "question": "부산 다음 달 마감 사업 알려줘",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "176563",
+        "176953",
+        "176497"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4359
+    },
+    {
+      "qid": "G036",
+      "type": "date",
+      "question": "대구 다음 달 마감 사업 알려줘",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "176952",
+        "175849",
+        "177060"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4490
+    },
+    {
+      "qid": "G038",
+      "type": "date",
+      "question": "대전 다음 달 마감 사업 알려줘",
+      "refused": false,
+      "reason": null,
+      "provider": "gemini",
+      "source_ids": [
+        "176566"
+      ],
+      "cited": true,
+      "gold_in_sources": true,
+      "latency_ms": 4853
+    }
+  ]
+}
