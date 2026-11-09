@@ -1,0 +1,79 @@
+{
+  "as_of": "2026-11-06",
+  "k": 5,
+  "threshold": "0.05",
+  "retrieval": {
+    "C0 dense": {
+      "hit_at_k": 1.0,
+      "mrr": 0.8444444444444444,
+      "precision": {
+        "filter": 0.08,
+        "date": 0.07500000000000001,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 33.83716650569113,
+      "lookup_misses": []
+    },
+    "C1 +hybrid": {
+      "hit_at_k": 1.0,
+      "mrr": 0.8333333333333334,
+      "precision": {
+        "filter": 0.06666666666666667,
+        "date": 0.07500000000000001,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 133.66377100464888,
+      "lookup_misses": []
+    },
+    "C2 +filter": {
+      "hit_at_k": 1.0,
+      "mrr": 1.0,
+      "precision": {
+        "filter": 1.0,
+        "date": 1.0,
+        "multi": 1.0
+      },
+      "empty": 0,
+      "median_ms": 206.66583399724914,
+      "lookup_misses": []
+    },
+    "C3 +rerank": {
+      "hit_at_k": 1.0,
+      "mrr": 1.0,
+      "precision": {
+        "filter": 1.0,
+        "date": 1.0,
+        "multi": 1.0
+      },
+      "empty": 0,
+      "median_ms": 3046.960145496996,
+      "lookup_misses": []
+    },
+    "F-dense (dense+필터)": {
+      "hit_at_k": 1.0,
+      "mrr": 1.0,
+      "precision": {
+        "filter": 1.0,
+        "date": 1.0,
+        "multi": 1.0
+      },
+      "empty": 0,
+      "median_ms": 78.95079150330275,
+      "lookup_misses": []
+    },
+    "F-sparse (sparse+필터)": {
+      "hit_at_k": 1.0,
+      "mrr": 1.0,
+      "precision": {
+        "filter": 1.0,
+        "date": 1.0,
+        "multi": 1.0
+      },
+      "empty": 0,
+      "median_ms": 170.37035399698652,
+      "lookup_misses": []
+    }
+  }
+}

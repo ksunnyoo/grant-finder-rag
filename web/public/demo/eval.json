@@ -1,0 +1,566 @@
+{
+  "asOfDate": "2026-11-06",
+  "generatedAt": "2026-11-09T15:50:16",
+  "sets": [
+    {
+      "id": "easy",
+      "title": "쉬운 질문",
+      "description": "제목을 거의 그대로 쓴 질문과 지역·업력·마감 조건 질문입니다.",
+      "evaluated": "제목 질문 15개의 Hit@5·MRR, 조건 질문 27개의 정밀도",
+      "hasPrecision": true,
+      "metrics": [
+        {
+          "name": "C0 dense",
+          "hitAtK": 1.0,
+          "mrr": 0.8444444444444444,
+          "precisionFilter": 0.08,
+          "precisionDate": 0.07500000000000001,
+          "precisionMulti": 0.0,
+          "medianMs": 32
+        },
+        {
+          "name": "C1 +hybrid",
+          "hitAtK": 1.0,
+          "mrr": 0.8333333333333334,
+          "precisionFilter": 0.06666666666666667,
+          "precisionDate": 0.07500000000000001,
+          "precisionMulti": 0.0,
+          "medianMs": 134
+        },
+        {
+          "name": "C2 +filter",
+          "hitAtK": 1.0,
+          "mrr": 1.0,
+          "precisionFilter": 1.0,
+          "precisionDate": 1.0,
+          "precisionMulti": 1.0,
+          "medianMs": 210
+        },
+        {
+          "name": "C3 +rerank",
+          "hitAtK": 1.0,
+          "mrr": 1.0,
+          "precisionFilter": 1.0,
+          "precisionDate": 1.0,
+          "precisionMulti": 1.0,
+          "medianMs": 3122
+        },
+        {
+          "name": "F-dense (dense+필터)",
+          "hitAtK": 1.0,
+          "mrr": 1.0,
+          "precisionFilter": 1.0,
+          "precisionDate": 1.0,
+          "precisionMulti": 1.0,
+          "medianMs": 80
+        },
+        {
+          "name": "F-sparse (sparse+필터)",
+          "hitAtK": 1.0,
+          "mrr": 1.0,
+          "precisionFilter": 1.0,
+          "precisionDate": 1.0,
+          "precisionMulti": 1.0,
+          "medianMs": 173
+        }
+      ]
+    },
+    {
+      "id": "hard",
+      "title": "어려운 질문",
+      "description": "제목 없이 기관+분야, 본문에만 나오는 단어로 묻는 질문입니다.",
+      "evaluated": "15문항",
+      "hasPrecision": false,
+      "metrics": [
+        {
+          "name": "C0 dense",
+          "hitAtK": 0.4666666666666667,
+          "mrr": 0.20444444444444443,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 37
+        },
+        {
+          "name": "C1 +hybrid",
+          "hitAtK": 0.4666666666666667,
+          "mrr": 0.3222222222222222,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 143
+        },
+        {
+          "name": "C2 +filter",
+          "hitAtK": 0.8666666666666667,
+          "mrr": 0.788888888888889,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 199
+        },
+        {
+          "name": "C3 +rerank",
+          "hitAtK": 0.9333333333333333,
+          "mrr": 0.8466666666666666,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 3027
+        },
+        {
+          "name": "F-dense (dense+필터)",
+          "hitAtK": 0.7333333333333333,
+          "mrr": 0.7,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 68
+        },
+        {
+          "name": "F-sparse (sparse+필터)",
+          "hitAtK": 0.8666666666666667,
+          "mrr": 0.8333333333333334,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 169
+        }
+      ]
+    },
+    {
+      "id": "rare",
+      "title": "희귀 단어 질문",
+      "description": "한 공고에만 나오는 고유명사·영문 단어 2개로 묻는 질문입니다.",
+      "evaluated": "15문항",
+      "hasPrecision": false,
+      "metrics": [
+        {
+          "name": "C0 dense",
+          "hitAtK": 0.3333333333333333,
+          "mrr": 0.24444444444444444,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 34
+        },
+        {
+          "name": "C1 +hybrid",
+          "hitAtK": 0.8,
+          "mrr": 0.45777777777777773,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 113
+        },
+        {
+          "name": "C2 +filter",
+          "hitAtK": 0.8666666666666667,
+          "mrr": 0.7333333333333333,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 171
+        },
+        {
+          "name": "C3 +rerank",
+          "hitAtK": 0.8666666666666667,
+          "mrr": 0.8166666666666667,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 3066
+        },
+        {
+          "name": "F-dense (dense+필터)",
+          "hitAtK": 0.5333333333333333,
+          "mrr": 0.45,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 63
+        },
+        {
+          "name": "F-sparse (sparse+필터)",
+          "hitAtK": 0.8666666666666667,
+          "mrr": 0.8666666666666667,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 138
+        }
+      ]
+    }
+  ],
+  "e2e": {
+    "refusalCorrect": 8,
+    "nNoAnswer": 8,
+    "overRefused": 1,
+    "nAnswerable": 27,
+    "cited": 26,
+    "nAnswered": 26,
+    "goldInSources": 14,
+    "nLookup": 15,
+    "medianMs": 4955,
+    "rows": [
+      {
+        "qid": "G043",
+        "type": "no_answer",
+        "question": "내일 서울 날씨 어때?",
+        "refused": true,
+        "reason": "LOW_RELEVANCE",
+        "cited": false,
+        "goldInSources": false,
+        "latencyMs": 4432
+      },
+      {
+        "qid": "G044",
+        "type": "no_answer",
+        "question": "비트코인 지금 시세 알려줘",
+        "refused": true,
+        "reason": "LOW_RELEVANCE",
+        "cited": false,
+        "goldInSources": false,
+        "latencyMs": 2844
+      },
+      {
+        "qid": "G045",
+        "type": "no_answer",
+        "question": "삼성전자 신입 채용 일정 알려줘",
+        "refused": true,
+        "reason": "LOW_RELEVANCE",
+        "cited": false,
+        "goldInSources": false,
+        "latencyMs": 3070
+      },
+      {
+        "qid": "G046",
+        "type": "no_answer",
+        "question": "아파트 청약 일정 알려줘",
+        "refused": true,
+        "reason": "LOW_RELEVANCE",
+        "cited": false,
+        "goldInSources": false,
+        "latencyMs": 3101
+      },
+      {
+        "qid": "G047",
+        "type": "no_answer",
+        "question": "대학생 국가장학금 신청 방법 알려줘",
+        "refused": true,
+        "reason": "LOW_RELEVANCE",
+        "cited": false,
+        "goldInSources": false,
+        "latencyMs": 4135
+      },
+      {
+        "qid": "G048",
+        "type": "no_answer",
+        "question": "강남 맛집 추천해줘",
+        "refused": true,
+        "reason": "LOW_RELEVANCE",
+        "cited": false,
+        "goldInSources": false,
+        "latencyMs": 3126
+      },
+      {
+        "qid": "G049",
+        "type": "no_answer",
+        "question": "파이썬 설치하는 방법 알려줘",
+        "refused": true,
+        "reason": "LOW_RELEVANCE",
+        "cited": false,
+        "goldInSources": false,
+        "latencyMs": 3074
+      },
+      {
+        "qid": "G050",
+        "type": "no_answer",
+        "question": "해외 VC 직접 투자 받는 방법 알려줘",
+        "refused": true,
+        "reason": "LOW_RELEVANCE",
+        "cited": false,
+        "goldInSources": false,
+        "latencyMs": 3108
+      },
+      {
+        "qid": "G001",
+        "type": "lookup",
+        "question": "대전 테스트베드 연계사업 공모 지원 내용이 뭐야?",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 4146
+      },
+      {
+        "qid": "G002",
+        "type": "lookup",
+        "question": "맞춤형 해외 저작권 바우처 지원' 사업 수행기관 지원 내용이 뭐야?",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 4678
+      },
+      {
+        "qid": "G003",
+        "type": "lookup",
+        "question": "논산시 사회적경제 창업 아카데미 지원 내용이 뭐야?",
+        "refused": true,
+        "reason": "LOW_RELEVANCE",
+        "cited": false,
+        "goldInSources": false,
+        "latencyMs": 4273
+      },
+      {
+        "qid": "G004",
+        "type": "lookup",
+        "question": "제6차 해양수산 투자기관협의회 지원 내용이 뭐야?",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 4251
+      },
+      {
+        "qid": "G005",
+        "type": "lookup",
+        "question": "서울마포 대학연계 AI 청년창업포럼 지원 내용이 뭐야?",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 4151
+      },
+      {
+        "qid": "G006",
+        "type": "lookup",
+        "question": "대덕 원스톱 Bridge 연계 제 108회 대전창업포럼 지원 내용이 뭐야?",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 4361
+      },
+      {
+        "qid": "G007",
+        "type": "lookup",
+        "question": "위치정보 보호조치 교육 지원 내용이 뭐야?",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 5086
+      },
+      {
+        "qid": "G008",
+        "type": "lookup",
+        "question": "판교테크노밸리 입주기업 임대보증금 지원사업 지원 내용이 뭐야?",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 4430
+      },
+      {
+        "qid": "G009",
+        "type": "lookup",
+        "question": "청년 쿡 비즈니스·푸드테크 센터 스타트업 지원 내용이 뭐야?",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 4568
+      },
+      {
+        "qid": "G010",
+        "type": "lookup",
+        "question": "신개념 세대융합 청년창업 지원 멘티 상시 지원 내용이 뭐야?",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 5072
+      },
+      {
+        "qid": "G011",
+        "type": "lookup",
+        "question": "중동상황 대응 「수출위기 극복 물류지원금」지원사업 지원 내용이 뭐야?",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 5639
+      },
+      {
+        "qid": "G012",
+        "type": "lookup",
+        "question": "글로벌 진출 초기 챙겨야 할 GEO 전략 지원 내용이 뭐야?",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 5520
+      },
+      {
+        "qid": "G013",
+        "type": "lookup",
+        "question": "6회 호남 엔젤리더스포럼 in 전북 지원 내용이 뭐야?",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 5355
+      },
+      {
+        "qid": "G014",
+        "type": "lookup",
+        "question": "포스코기술투자 TIPS Scout 참여 스타트업 지원 내용이 뭐야?",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 5006
+      },
+      {
+        "qid": "G015",
+        "type": "lookup",
+        "question": "전문분야 창업멘토링 11월 지원 내용이 뭐야?",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 4276
+      },
+      {
+        "qid": "G016",
+        "type": "filter",
+        "question": "서울 지역 지원사업 알려줘",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 5350
+      },
+      {
+        "qid": "G018",
+        "type": "filter",
+        "question": "서울 사업 중 이번 달 안에 마감되는 것 알려줘",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 4904
+      },
+      {
+        "qid": "G020",
+        "type": "filter",
+        "question": "경기 예비창업자가 신청할 수 있는 사업 알려줘",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 5570
+      },
+      {
+        "qid": "G022",
+        "type": "filter",
+        "question": "충남 지역 지원사업 알려줘",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 4887
+      },
+      {
+        "qid": "G024",
+        "type": "filter",
+        "question": "충남 사업 중 이번 달 안에 마감되는 것 알려줘",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 5102
+      },
+      {
+        "qid": "G026",
+        "type": "filter",
+        "question": "부산 예비창업자가 신청할 수 있는 사업 알려줘",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 4732
+      },
+      {
+        "qid": "G028",
+        "type": "filter",
+        "question": "경남 지역 지원사업 알려줘",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 5204
+      },
+      {
+        "qid": "G030",
+        "type": "filter",
+        "question": "경남 사업 중 이번 달 안에 마감되는 것 알려줘",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 5062
+      },
+      {
+        "qid": "G032",
+        "type": "date",
+        "question": "다음 달 마감되는 사업 알려줘",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 5065
+      },
+      {
+        "qid": "G034",
+        "type": "date",
+        "question": "부산 다음 달 마감 사업 알려줘",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 4403
+      },
+      {
+        "qid": "G036",
+        "type": "date",
+        "question": "대구 다음 달 마감 사업 알려줘",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 4619
+      },
+      {
+        "qid": "G038",
+        "type": "date",
+        "question": "대전 다음 달 마감 사업 알려줘",
+        "refused": false,
+        "reason": null,
+        "cited": true,
+        "goldInSources": true,
+        "latencyMs": 5070
+      }
+    ]
+  },
+  "limits": [
+    "세트당 15문항이라 1문항이 6.7%p입니다. 작은 차이는 우연과 구분되지 않습니다.",
+    "필터 없는 구성은 마감된 공고까지 검색하므로 필터를 켠 구성과의 차이에는 마감 공고 제외 효과가 섞여 있습니다.",
+    "어려운 질문과 희귀 단어 질문은 정확한 단어가 들어가도록 설계되어 단어 일치 방식(sparse)에 유리합니다. 의미는 같고 단어가 다른 질문은 시험하지 않았습니다.",
+    "쉬운 질문은 제목을 거의 그대로 써서 필터를 켠 모든 구성이 만점이며 방식 간 차이를 가를 수 없습니다.",
+    "범위 밖 질문 대부분은 주제가 완전히 다른 쉬운 질문이라 거절 정확도를 일반화할 수 없습니다.",
+    "출처가 붙은 답변 비율은 형식만 확인하며 문장이 근거와 맞는지는 측정하지 않았습니다."
+  ]
+}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { askQuestion, fetchMeta } from "./api";
 import { AnswerView } from "./components/AnswerView";
 import { ConditionPanel } from "./components/ConditionPanel";
+import { EvalView } from "./components/EvalView";
 import { SourceCard } from "./components/SourceCard";
 import { StageTimeline } from "./components/StageTimeline";
 import { EMPTY_CONDITION, toFilterInput } from "./condition";
@@ -25,6 +26,7 @@ export default function App() {
 	const [loading, setLoading] = useState(false);
 	const [result, setResult] = useState<AskResponse | null>(null);
 	const [error, setError] = useState<string | null>(null);
+	const [tab, setTab] = useState<"ask" | "eval">("ask");
 
 	useEffect(() => {
 		const load = DEMO ? loadDemo().then(setDemo) : fetchMeta().then(setMeta);
@@ -76,106 +78,139 @@ export default function App() {
 					</p>
 				</header>
 
-				{DEMO && (
-					<div className="rounded-lg border border-blue-200 bg-blue-50 p-3 text-sm text-blue-900">
-						<p className="font-medium">저장된 응답을 재생하는 데모입니다.</p>
-						<p className="mt-1 text-xs">
-							서버를 거치지 않고 미리 저장한 질문 {demo?.items.length ?? 0}개의
-							응답을 보여 줍니다. 소요 시간은 저장 당시 로컬 PC에서 측정한
-							값입니다
-							{demo && ` (저장 ${demo.generatedAt.replace("T", " ")})`}. 직접
-							질문하려면{" "}
-							<a
-								className="underline"
-								href={REPO_URL}
-								target="_blank"
-								rel="noreferrer"
-							>
-								저장소
-							</a>
-							의 실행 방법을 따르십시오.
-						</p>
-					</div>
-				)}
+				<nav className="flex gap-1 border-b border-slate-200 text-sm">
+					{(
+						[
+							["ask", "질문"],
+							["eval", "평가 결과"],
+						] as const
+					).map(([id, label]) => (
+						<button
+							key={id}
+							type="button"
+							onClick={() => setTab(id)}
+							className={
+								tab === id
+									? "border-b-2 border-blue-600 px-3 py-1.5 font-medium text-blue-700"
+									: "px-3 py-1.5 text-slate-500 hover:text-slate-800"
+							}
+						>
+							{label}
+						</button>
+					))}
+				</nav>
 
-				<form
-					className="space-y-2"
-					onSubmit={(e) => {
-						e.preventDefault();
-						void submit(question);
-					}}
-				>
-					<textarea
-						className="w-full rounded-lg border border-slate-300 bg-white p-3 text-sm disabled:bg-slate-100"
-						rows={2}
-						maxLength={500}
-						disabled={DEMO}
-						placeholder={
-							DEMO
-								? "아래 질문을 눌러 저장된 응답을 확인하십시오"
-								: "예: 서울 예비창업자가 신청할 수 있는 사업 알려줘"
-						}
-						value={question}
-						onChange={(e) => setQuestion(e.target.value)}
-					/>
-					<div className="flex flex-wrap items-center gap-2">
-						{!DEMO && (
-							<button
-								type="submit"
-								disabled={loading || !question.trim()}
-								className="rounded-md bg-blue-600 px-4 py-1.5 text-sm font-medium text-white disabled:bg-slate-300"
-							>
-								{loading ? "검색 중…" : "질문하기"}
-							</button>
-						)}
-						{chips.map((ex) => (
-							<button
-								key={ex}
-								type="button"
-								disabled={loading}
-								onClick={() => pick(ex)}
-								className="rounded-full border border-slate-300 bg-white px-2.5 py-1 text-xs text-slate-700 hover:bg-slate-100 disabled:opacity-50"
-							>
-								{ex}
-							</button>
-						))}
-					</div>
-				</form>
-
-				{!DEMO && (
-					<ConditionPanel
-						meta={meta}
-						value={condition}
-						onChange={setCondition}
-					/>
-				)}
-
-				{loading && (
-					<p className="text-sm text-slate-500">
-						검색하고 답변을 만드는 중입니다. 첫 질문은 모델을 불러오느라 더 걸릴
-						수 있습니다.
-					</p>
-				)}
-				{error && (
-					<div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-800">
-						{error}
-					</div>
-				)}
-
-				{result && !loading && (
+				{tab === "eval" ? (
+					<EvalView />
+				) : (
 					<>
-						<AnswerView result={result} />
-						{result.sources.length > 0 && (
-							<section className="space-y-2">
-								<h2 className="text-sm font-semibold text-slate-700">
-									근거 공고 {result.sources.length}건
-								</h2>
-								{result.sources.map((s) => (
-									<SourceCard key={s.id} source={s} />
-								))}
-							</section>
+						{DEMO && (
+							<div className="rounded-lg border border-blue-200 bg-blue-50 p-3 text-sm text-blue-900">
+								<p className="font-medium">
+									저장된 응답을 재생하는 데모입니다.
+								</p>
+								<p className="mt-1 text-xs">
+									서버를 거치지 않고 미리 저장한 질문 {demo?.items.length ?? 0}
+									개의 응답을 보여 줍니다. 소요 시간은 저장 당시 로컬 PC에서
+									측정한 값입니다
+									{demo && ` (저장 ${demo.generatedAt.replace("T", " ")})`}.
+									직접 질문하려면{" "}
+									<a
+										className="underline"
+										href={REPO_URL}
+										target="_blank"
+										rel="noreferrer"
+									>
+										저장소
+									</a>
+									의 실행 방법을 따르십시오.
+								</p>
+							</div>
 						)}
-						<StageTimeline stages={result.stages} totalMs={result.latencyMs} />
+
+						<form
+							className="space-y-2"
+							onSubmit={(e) => {
+								e.preventDefault();
+								void submit(question);
+							}}
+						>
+							<textarea
+								className="w-full rounded-lg border border-slate-300 bg-white p-3 text-sm disabled:bg-slate-100"
+								rows={2}
+								maxLength={500}
+								disabled={DEMO}
+								placeholder={
+									DEMO
+										? "아래 질문을 눌러 저장된 응답을 확인하십시오"
+										: "예: 서울 예비창업자가 신청할 수 있는 사업 알려줘"
+								}
+								value={question}
+								onChange={(e) => setQuestion(e.target.value)}
+							/>
+							<div className="flex flex-wrap items-center gap-2">
+								{!DEMO && (
+									<button
+										type="submit"
+										disabled={loading || !question.trim()}
+										className="rounded-md bg-blue-600 px-4 py-1.5 text-sm font-medium text-white disabled:bg-slate-300"
+									>
+										{loading ? "검색 중…" : "질문하기"}
+									</button>
+								)}
+								{chips.map((ex) => (
+									<button
+										key={ex}
+										type="button"
+										disabled={loading}
+										onClick={() => pick(ex)}
+										className="rounded-full border border-slate-300 bg-white px-2.5 py-1 text-xs text-slate-700 hover:bg-slate-100 disabled:opacity-50"
+									>
+										{ex}
+									</button>
+								))}
+							</div>
+						</form>
+
+						{!DEMO && (
+							<ConditionPanel
+								meta={meta}
+								value={condition}
+								onChange={setCondition}
+							/>
+						)}
+
+						{loading && (
+							<p className="text-sm text-slate-500">
+								검색하고 답변을 만드는 중입니다. 첫 질문은 모델을 불러오느라 더
+								걸릴 수 있습니다.
+							</p>
+						)}
+						{error && (
+							<div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-800">
+								{error}
+							</div>
+						)}
+
+						{result && !loading && (
+							<>
+								<AnswerView result={result} />
+								{result.sources.length > 0 && (
+									<section className="space-y-2">
+										<h2 className="text-sm font-semibold text-slate-700">
+											근거 공고 {result.sources.length}건
+										</h2>
+										{result.sources.map((s) => (
+											<SourceCard key={s.id} source={s} />
+										))}
+									</section>
+								)}
+								<StageTimeline
+									stages={result.stages}
+									totalMs={result.latencyMs}
+								/>
+							</>
+						)}
 					</>
 				)}
 
