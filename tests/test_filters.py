@@ -24,6 +24,8 @@ def test_analyze_age_and_years():
 
 def test_analyze_month_and_category():
     f = analyze_query("이번 달 마감인 창업교육 공고는?", AS_OF)
+    assert f.category == []
+    f = analyze_query("이번 달 마감인 창업교육 공고는?", AS_OF, extract_category=True)
     assert f.category == ["창업교육"]
     assert f.end_from == date(2026, 11, 1)
     assert f.end_to == date(2026, 11, 30)

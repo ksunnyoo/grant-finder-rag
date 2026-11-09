@@ -2,7 +2,12 @@
 import time
 from datetime import date
 
-from grant_finder_rag.contracts.models import AskResult, Candidate, SearchFilters, Source
+from grant_finder_rag.contracts.models import (
+    AskResult,
+    Candidate,
+    SearchFilters,
+    Source,
+)
 from grant_finder_rag.contracts.ports import RetrieverPort
 from grant_finder_rag.generation.answer import AnswerGenerator
 from grant_finder_rag.retrieval.query_analyzer import analyze_query, merge_filters

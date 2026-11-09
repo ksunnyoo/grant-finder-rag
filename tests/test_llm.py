@@ -1,7 +1,11 @@
 import httpx
 import pytest
 
-from grant_finder_rag.contracts.errors import LLMError, LLMTransientError, LLMUnavailableError
+from grant_finder_rag.contracts.errors import (
+    LLMError,
+    LLMTransientError,
+    LLMUnavailableError,
+)
 from grant_finder_rag.generation.fallback_llm import FallbackLLM
 from grant_finder_rag.llm.common import check_response, strip_think
 from grant_finder_rag.llm.factory import build_providers, parse_order

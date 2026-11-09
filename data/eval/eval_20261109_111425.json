@@ -1,0 +1,55 @@
+{
+  "as_of": "2026-11-06",
+  "k": 5,
+  "threshold": "0.05",
+  "retrieval": {
+    "C0 dense": {
+      "hit_at_k": 1.0,
+      "mrr": 0.8444444444444444,
+      "precision": {
+        "filter": 0.08,
+        "date": 0.07500000000000001,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 36.11006250139326,
+      "lookup_misses": []
+    },
+    "C1 +hybrid": {
+      "hit_at_k": 1.0,
+      "mrr": 0.8333333333333334,
+      "precision": {
+        "filter": 0.06666666666666667,
+        "date": 0.07500000000000001,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 136.1471665004501,
+      "lookup_misses": []
+    },
+    "C2 +filter": {
+      "hit_at_k": 1.0,
+      "mrr": 1.0,
+      "precision": {
+        "filter": 1.0,
+        "date": 1.0,
+        "multi": 1.0
+      },
+      "empty": 0,
+      "median_ms": 210.4950419998204,
+      "lookup_misses": []
+    },
+    "C3 +rerank": {
+      "hit_at_k": 1.0,
+      "mrr": 1.0,
+      "precision": {
+        "filter": 1.0,
+        "date": 1.0,
+        "multi": 1.0
+      },
+      "empty": 0,
+      "median_ms": 3064.9491454969393,
+      "lookup_misses": []
+    }
+  }
+}

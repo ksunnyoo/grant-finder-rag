@@ -90,7 +90,9 @@ def _end_range(question: str, as_of: date) -> tuple[date | None, date | None]:
     return None, None
 
 
-def analyze_query(question: str, as_of_date: date) -> SearchFilters:
+def analyze_query(
+    question: str, as_of_date: date, extract_category: bool = False
+) -> SearchFilters:
     end_from, end_to = _end_range(question, as_of_date)
     return SearchFilters(
         as_of_date=as_of_date,
@@ -98,7 +100,7 @@ def analyze_query(question: str, as_of_date: date) -> SearchFilters:
         target=_find(question, TARGETS),
         biz_age=_biz_age(question),
         age=_age(question),
-        category=_find(question, CATEGORIES),
+        category=_find(question, CATEGORIES) if extract_category else [],
         include_closed=any(w in question for w in CLOSED_WORDS),
         end_from=end_from,
         end_to=end_to,
