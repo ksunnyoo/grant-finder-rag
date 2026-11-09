@@ -32,7 +32,7 @@ def main():
     retriever, store = build_retriever(with_reranker=True)
     generator = AnswerGenerator(
         build_llm(os.getenv("LLM_PROVIDER_ORDER")),
-        refuse_threshold=float(os.getenv("REFUSE_THRESHOLD", "0")),
+        refuse_threshold=float(os.getenv("REFUSE_THRESHOLD", "0.05")),
     )
     service = AskService(retriever, generator, as_of)
     items = []

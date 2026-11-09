@@ -77,7 +77,7 @@ def eval_retrieval(retriever, items, as_of, k):
 
 
 def eval_e2e(retriever, items, as_of, providers, limit, pause):
-    threshold = float(os.getenv("REFUSE_THRESHOLD", "0"))
+    threshold = float(os.getenv("REFUSE_THRESHOLD", "0.05"))
     generator = AnswerGenerator(build_llm(providers), refuse_threshold=threshold)
     service = AskService(retriever, generator, as_of)
     no_answer = [i for i in items if i["type"] == "no_answer"]

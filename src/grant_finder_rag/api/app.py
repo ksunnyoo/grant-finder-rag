@@ -81,7 +81,7 @@ def create_app(service=None, as_of: date | None = None) -> FastAPI:
             retriever, store = build_retriever(with_reranker=True)
             generator = AnswerGenerator(
                 build_llm(os.getenv("LLM_PROVIDER_ORDER")),
-                refuse_threshold=float(os.getenv("REFUSE_THRESHOLD", "0")),
+                refuse_threshold=float(os.getenv("REFUSE_THRESHOLD", "0.05")),
             )
             app.state.service = AskService(retriever, generator, app.state.as_of)
         else:
@@ -127,7 +127,7 @@ def create_app(service=None, as_of: date | None = None) -> FastAPI:
             "regions": list(REGIONS),
             "targets": list(TARGETS),
             "categories": list(CATEGORIES),
-            "refuseThreshold": float(os.getenv("REFUSE_THRESHOLD", "0")),
+            "refuseThreshold": float(os.getenv("REFUSE_THRESHOLD", "0.05")),
         }
 
     @app.post("/api/ask")

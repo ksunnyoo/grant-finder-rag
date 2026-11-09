@@ -87,7 +87,7 @@ def cmd_ask(args: argparse.Namespace) -> None:
     as_of = date.fromisoformat(args.as_of or os.getenv("AS_OF_DATE") or date.today().isoformat())
     retriever, store = build_retriever(with_reranker=True)
     generator = AnswerGenerator(
-        build_llm(args.providers), refuse_threshold=float(os.getenv("REFUSE_THRESHOLD", "0"))
+        build_llm(args.providers), refuse_threshold=float(os.getenv("REFUSE_THRESHOLD", "0.05"))
     )
     service = AskService(retriever, generator, as_of)
     try:
