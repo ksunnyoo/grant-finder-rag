@@ -1,0 +1,369 @@
+{
+  "asOfDate": "2026-11-06",
+  "generatedAt": "2026-11-09T14:32:46",
+  "items": [
+    {
+      "question": "서울 예비창업자가 신청할 수 있는 사업 알려줘",
+      "response": {
+        "answer": "서울시 예비창업자가 신청할 수 있는 공고문 기준 지원사업은 다음과 같습니다.\n\n- 서울시 소재 녹색분야 예비창업자를 위한 멘토링 지원사업이며, 2026년 12월 31일까지 이메일로 신청할 수 있습니다 [178445].\n- 서울시 소재 F&B 분야 예비창업자를 위한 키친인큐베이터 입주·보육 지원사업이며, 2026년 11월 26일까지 온라인으로 신청할 수 있습니다 [179653].\n- 식품제조업 또는 푸드테크 분야 청년 예비창업자를 위한 스타트업 모집 공고이며, 2026년 11월 20일까지 온라인으로 신청할 수 있습니다 [179687].\n- 서울시 거주 청년 예비창업희망자를 위한 구로구 청년창업지원센터 창업교육 프로그램이며, 2026년 11월 11일까지 온라인으로 신청할 수 있습니다 [179590].\n\n정확한 내용과 상세 조건은 원문 링크를 통해 확인하시기 바랍니다 [178445, 179653, 179687, 179590].",
+        "refused": false,
+        "refuseReason": null,
+        "sources": [
+          {
+            "id": "178445",
+            "title": "2026년 서울 기후테크 기업 및 예비창업자를 위한 멘토링 지원사업 안내",
+            "agency": "서울기후테크산업지원센터장",
+            "category": "멘토링·컨설팅·교육",
+            "region": "서울",
+            "endDate": "2026-12-31",
+            "dDay": 55,
+            "snippet": "국가녹색기술연구소 서울기후테크산업지원센터는 서울시 내 중소기업 및 예비창업자를 위하여 다음과 같이 다양한 전문가 풀을 활용한 맞춤형 멘토링을 무료로 진행하고자 합니다. 많은 참여 부탁드립니다.",
+            "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=178445",
+            "flags": []
+          },
+          {
+            "id": "179653",
+            "title": "2026년도 키친인큐베이터 개별·공유주방 25기 및 제조주방 13기 모집",
+            "agency": "(재)서울경제진흥원",
+            "category": "시설·공간·보육",
+            "region": "서울",
+            "endDate": "2026-11-26",
+            "dDay": 20,
+            "snippet": "서울창업허브 공덕 키친인큐베이터에서는 F&B(예비)창업자의 메뉴개발 및 실제 메뉴 판매 기회를 제공하기 위해 키친인큐베이터 개별주방, 공유주방, 제조주방을 사용할 참가기업(팀)을 모집하오니 많은 신청 바랍니다.",
+            "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=179653",
+            "flags": []
+          },
+          {
+            "id": "179687",
+            "title": "2027년 청년 쿡 비즈니스·푸드테크 센터 스타트업 모집 공고",
+            "agency": "서울특별시",
+            "category": "사업화",
+            "region": "서울",
+            "endDate": "2026-11-20",
+            "dDay": 14,
+            "snippet": "청년 식품제조·푸드테크 스타트업 창업 활성화를 위한 성장 기반 마련을 위해 수요자 중심 맞춤형 지원사업에 참여할 팀을 모집하오니 많은 신청 바랍니다.",
+            "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=179687",
+            "flags": []
+          },
+          {
+            "id": "179590",
+            "title": "구로구 청년창업지원센터 일반 창업교육(하반기: 6회차): 발표평가 자료 작성 및 발표 요령",
+            "agency": "구로구 청년창업지원센터",
+            "category": "시설·공간·보육",
+            "region": "서울",
+            "endDate": "2026-11-11",
+            "dDay": 5,
+            "snippet": "창업지원사업 발표평가에 대비하여 발표자료 작성 방법과 효과적인 발표 전략 및 요령을 학습하고, 사업계획의 핵심 내용을 명확하게 전달하는 역량 강화",
+            "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=179590",
+            "flags": []
+          }
+        ],
+        "appliedFilters": {
+          "asOfDate": "2026-11-06",
+          "region": [
+            "서울"
+          ],
+          "bizAge": [
+            "예비창업자"
+          ]
+        },
+        "llmProvider": "gemini",
+        "asOfDate": "2026-11-06",
+        "stages": {
+          "analyze": 0,
+          "search": 2776,
+          "rerank": 3537,
+          "generate": 12138
+        },
+        "latencyMs": 18453
+      }
+    },
+    {
+      "question": "아산 투자유치 프로그램 신청 방법이 뭐야?",
+      "response": {
+        "answer": "아산 투자유치 Build-Up 프로그램은 2026년 11월 13일까지 온라인(https://forms.gle/ryHx22aymGc9yFUL8)으로 신청할 수 있습니다 [179739]. 공고문 기준 신청 자격과 마감일 등을 원문 링크에서 반드시 확인하시기 바랍니다 [179739].",
+        "refused": false,
+        "refuseReason": null,
+        "sources": [
+          {
+            "id": "179739",
+            "title": "2026 아산 투자유치 Build-Up 프로그램 참여기업 모집",
+            "agency": "조슈아파트너스(주)",
+            "category": "창업교육",
+            "region": "충남",
+            "endDate": "2026-11-13",
+            "dDay": 7,
+            "snippet": "아산 지역 유망기업의 투자 역량 강화와 성공적인 투자유치를 지원하기 위해 「2026 아산 투자유치 Build-Up 프로그램」 참여기업을 모집합니다. 투자유치를 준비하는 아산 지역 기업들의 많은 관심과 참여 바랍니다.",
+            "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=179739",
+            "flags": []
+          }
+        ],
+        "appliedFilters": {
+          "asOfDate": "2026-11-06"
+        },
+        "llmProvider": "gemini",
+        "asOfDate": "2026-11-06",
+        "stages": {
+          "analyze": 0,
+          "search": 277,
+          "rerank": 3210,
+          "generate": 11795
+        },
+        "latencyMs": 15282
+      }
+    },
+    {
+      "question": "다음 달 마감되는 경기 지역 사업 알려줘",
+      "response": {
+        "answer": "다음 달(12월) 말까지 마감되는 경기 지역 사업 공고 안내입니다.\n\n- [경기경영자총협회] 26년 청년일자리도약장려금 사업 참여 기업 모집 안내는 공고문 기준 2026년 12월 31일까지 워크24를 통해 온라인 접수합니다 [176224].\n- 2026년 경기 스타트업 아카데미 민간협력 프로그램 「링크업」 운영 제안 모집공고는 공고문 기준 2026년 12월 31일까지 경기스타트업플랫폼을 통해 온라인 접수합니다 [178017].\n- [안양대학교 창업보육센터] 2026년 하반기 신규 입주기업 모집은 공고문 기준 2026년 12월 31일까지 이메일로 접수합니다 [178527].\n정확한 자격 요건과 상세 내용은 원문 링크를 확인하시기 바랍니다.",
+        "refused": false,
+        "refuseReason": null,
+        "sources": [
+          {
+            "id": "176224",
+            "title": "[경기경영자총협회] 26년 청년일자리도약장려금 사업 참여 기업 모집 안내",
+            "agency": "(사)경기경영자총협회",
+            "category": "사업화",
+            "region": "경기",
+            "endDate": "2026-12-31",
+            "dDay": 55,
+            "snippet": "안녕하세요. 경기경영자총협회 고용지원팀입니다. 본 회는 사용자측 권익을 대변하는 노동부 허가 법인인 경제단체로서 '청년일자리도약장려금 사업'을 운영하고 있습니다. 고용노동부 주관 사업인 2026년 청년일자리도약장려금 사업을 안내드리오니 청년 채용 기업에서는 많은 참여 바랍니다.",
+            "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176224",
+            "flags": []
+          },
+          {
+            "id": "178017",
+            "title": "2026년 경기 스타트업 아카데미 민간협력 프로그램 「링크업」 운영 제안 모집공고",
+            "agency": "경기도·경기도경제과학진흥원",
+            "category": "멘토링·컨설팅·교육",
+            "region": "경기",
+            "endDate": "2026-12-31",
+            "dDay": 55,
+            "snippet": "경기도와 경기도경제과학진흥원은 기업, 전문기관 등이 보유한 분야별 전문역량을 도내 스타트업 및 예비창업자의 성장 수요와 연결(Link-up)하여 경기도형 민관협력 기반의 새로운 프로그램 운영 모델을 마련하고자, 협업 프로그램(기술교육, 창업교육, 세미나·워크숍, 멘토링·컨설팅, 네트워킹",
+            "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=178017",
+            "flags": []
+          },
+          {
+            "id": "178527",
+            "title": "[안양대학교 창업보육센터] 2026년 하반기 신규 입주기업 모집",
+            "agency": "안양대학교 창업보육센터",
+            "category": "시설·공간·보육",
+            "region": "경기",
+            "endDate": "2026-12-31",
+            "dDay": 55,
+            "snippet": "안양대학교 창업보육센터에서는 우수한 기술 및 아이디어를 보유한 초기창업기업 및 예비창업자의 발굴·육성을 위하여 다음과 같이 입주기업을 모집하오니 많은 신청 바랍니다.",
+            "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=178527",
+            "flags": []
+          }
+        ],
+        "appliedFilters": {
+          "asOfDate": "2026-11-06",
+          "region": [
+            "경기"
+          ],
+          "endFrom": "2026-12-01",
+          "endTo": "2026-12-31"
+        },
+        "llmProvider": "gemini",
+        "asOfDate": "2026-11-06",
+        "stages": {
+          "analyze": 0,
+          "search": 290,
+          "rerank": 2953,
+          "generate": 13108
+        },
+        "latencyMs": 16352
+      }
+    },
+    {
+      "question": "이번 달 마감되는 부산 사업 알려줘",
+      "response": {
+        "answer": "이번 달 마감되는 부산 지역 사업 공고는 다음과 같습니다.\n\n- [부산대학교병원] 「의료·헬스케어 스타트업 인큐베이터 사업」입주기업 모집공고는 11월 30일까지 이메일로 접수하며, 공고문 기준 대상은 부산서구 내 주소지 이전 가능한 의료·헬스케어 연관 분야 예비 및 초기창업자입니다 [179696].\n- [무료 AI 역량강화 교육] 생성형 AI 기반 무역 컴플라이언스 및 관세·ESG 리스크 최적화(부산)는 11월 10일까지 온라인으로 접수하며, 공고문 기준 대상은 글로벌 공공조달 및 수출(예비) 기업 실무자 및 중간관리자급 재직자입니다 [179251].\n- (부산센터) 2026년 제10회 제대군인 창업 워크숍 개최 안내는 11월 23일까지 온라인 및 이메일, 유선으로 접수하며, 공고문 기준 대상은 5년 이상 중·장기복무 제대(예정) 군인 등입니다 [179725].\n\n정확한 신청 방법과 상세한 내용은 원문 링크를 확인하시기 바랍니다.",
+        "refused": false,
+        "refuseReason": null,
+        "sources": [
+          {
+            "id": "179696",
+            "title": "[부산대학교병원]「의료·헬스케어 스타트업 인큐베이터 사업」입주기업 모집공고",
+            "agency": "부산대학교병원장",
+            "category": "시설·공간·보육",
+            "region": "부산",
+            "endDate": "2026-11-30",
+            "dDay": 24,
+            "snippet": "「의료·헬스케어 스타트업 인큐베이터 조성사업」의 일환으로, 혁신적인 기술아이디어를 보유한 예비(초기)창업자 입주기업을 모집하오니 많은 관심과 참여 부탁드립니다.",
+            "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=179696",
+            "flags": []
+          },
+          {
+            "id": "179251",
+            "title": "[무료 AI 역량강화 교육]생성형 AI 기반 무역 컴플라이언스 및 관세·ESG 리스크 최적화(부산)",
+            "agency": "(주)글로벌창업연구소",
+            "category": "멘토링·컨설팅·교육",
+            "region": "부산",
+            "endDate": "2026-11-10",
+            "dDay": 4,
+            "snippet": "글로벌 공공조달·수출 분야의 AI 활용 역량을 강화하고 디지털 전환을 지원하기 위한 「2026 산업전문인력 AI역량강화 지원사업」 교육과정에 참여할 기업및 재직자를 다음과 같이 모집합니다.",
+            "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=179251",
+            "flags": []
+          },
+          {
+            "id": "179725",
+            "title": "(부산센터) 2026년 제10회 제대군인 창업 워크숍 개최 안내",
+            "agency": "국가보훈부",
+            "category": "창업교육",
+            "region": "부산",
+            "endDate": "2026-11-23",
+            "dDay": 17,
+            "snippet": "창업 준비에 필요한 다양한 정보를 창업 유형별 전문가의 현장 강의를 통해 통합 제공함으로써 창업 준비가 열악한 제대군인의 창업 추진 역량 강화를 위해 다음과 같이 안내하오니 참여를 희망하는 분께서는 안내에 따라 신청해 주시기 바랍니다.",
+            "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=179725",
+            "flags": []
+          }
+        ],
+        "appliedFilters": {
+          "asOfDate": "2026-11-06",
+          "region": [
+            "부산"
+          ],
+          "endFrom": "2026-11-01",
+          "endTo": "2026-11-30"
+        },
+        "llmProvider": "gemini",
+        "asOfDate": "2026-11-06",
+        "stages": {
+          "analyze": 0,
+          "search": 279,
+          "rerank": 3168,
+          "generate": 11661
+        },
+        "latencyMs": 15109
+      }
+    },
+    {
+      "question": "청년 푸드테크 창업 지원 사업 알려줘",
+      "response": {
+        "answer": "'2027년 청년 쿡 비즈니스·푸드테크 센터 스타트업 모집 공고'는 식품제조업 또는 푸드테크 분야의 만 19~39세 청년 스타트업을 대상으로 공고문 기준에 따라 2026년 11월 20일까지 온라인으로 신청을 받습니다 [179687]. 정확한 내용과 신청 방법은 원문 링크(https://youth.seoul.go.kr/content.do?key=2310100028)에서 확인하시기 바랍니다 [179687].",
+        "refused": false,
+        "refuseReason": null,
+        "sources": [
+          {
+            "id": "179687",
+            "title": "2027년 청년 쿡 비즈니스·푸드테크 센터 스타트업 모집 공고",
+            "agency": "서울특별시",
+            "category": "사업화",
+            "region": "서울",
+            "endDate": "2026-11-20",
+            "dDay": 14,
+            "snippet": "청년 식품제조·푸드테크 스타트업 창업 활성화를 위한 성장 기반 마련을 위해 수요자 중심 맞춤형 지원사업에 참여할 팀을 모집하오니 많은 신청 바랍니다.",
+            "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=179687",
+            "flags": []
+          }
+        ],
+        "appliedFilters": {
+          "asOfDate": "2026-11-06"
+        },
+        "llmProvider": "gemini",
+        "asOfDate": "2026-11-06",
+        "stages": {
+          "analyze": 0,
+          "search": 302,
+          "rerank": 3239,
+          "generate": 10894
+        },
+        "latencyMs": 14436
+      }
+    },
+    {
+      "question": "대구 창업 교육 지원사업 알려줘",
+      "response": {
+        "answer": "공고문 기준 대구 지역 창업 지원사업은 다음과 같습니다.\n\n- 2026년 남구다운 청년 창업 지원사업 통합공고(수정): 대구 남구 청년 예비창업자 및 기업을 대상으로 하며, 이메일 접수로 2026년 11월 12일까지 신청할 수 있습니다 [179486].\n- 대구 동성로 1인 창조기업 지원센터 입주기업 모집: 예비창업자 또는 1인 창조기업을 대상으로 하며, 이메일 접수로 2026년 12월 31일까지 신청할 수 있습니다 [175849].\n\n정확한 세부 자격요건 및 신청 방법은 원문 링크를 확인하시기 바랍니다 [179486, 175849].",
+        "refused": false,
+        "refuseReason": null,
+        "sources": [
+          {
+            "id": "179486",
+            "title": "2026년 남구다운 청년 창업 지원사업 통합공고(수정)",
+            "agency": "(사)대구경북고용복지연구원",
+            "category": "사업화",
+            "region": "대구",
+            "endDate": "2026-11-12",
+            "dDay": 6,
+            "snippet": "대구광역시 남구의 청년 유입 및 생활인구 증가를 통해 지역 활성화를 위한 ｢2026년 남구다운 청년 창업 지원사업｣을 다음과 같이 공고하오니, 많은 관심과 참여 바랍니다.",
+            "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=179486",
+            "flags": []
+          },
+          {
+            "id": "175849",
+            "title": "대구 동성로 1인 창조기업 지원센터 입주기업 모집",
+            "agency": "주식회사 디지스타트업인큐베이터",
+            "category": "시설·공간·보육",
+            "region": "대구",
+            "endDate": "2026-12-31",
+            "dDay": 55,
+            "snippet": "대구 동성로 1인 창조기업 지원센터에서는 참신한 기술과 아이디어를 가진 예비창업자 또는 1인 창조기업을 다음과 같이 모집합니다.",
+            "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=175849",
+            "flags": []
+          }
+        ],
+        "appliedFilters": {
+          "asOfDate": "2026-11-06",
+          "region": [
+            "대구"
+          ]
+        },
+        "llmProvider": "gemini",
+        "asOfDate": "2026-11-06",
+        "stages": {
+          "analyze": 1,
+          "search": 303,
+          "rerank": 3048,
+          "generate": 4561
+        },
+        "latencyMs": 7914
+      }
+    },
+    {
+      "question": "해외 VC 직접 투자 받는 방법 알려줘",
+      "response": {
+        "answer": null,
+        "refused": true,
+        "refuseReason": "LOW_RELEVANCE",
+        "sources": [],
+        "appliedFilters": {
+          "asOfDate": "2026-11-06"
+        },
+        "llmProvider": null,
+        "asOfDate": "2026-11-06",
+        "stages": {
+          "analyze": 0,
+          "search": 269,
+          "rerank": 2983
+        },
+        "latencyMs": 3252
+      }
+    },
+    {
+      "question": "내일 서울 날씨 어때?",
+      "response": {
+        "answer": null,
+        "refused": true,
+        "refuseReason": "LOW_RELEVANCE",
+        "sources": [],
+        "appliedFilters": {
+          "asOfDate": "2026-11-06",
+          "region": [
+            "서울"
+          ]
+        },
+        "llmProvider": "gemini",
+        "asOfDate": "2026-11-06",
+        "stages": {
+          "analyze": 0,
+          "search": 247,
+          "rerank": 2864,
+          "generate": 11284
+        },
+        "latencyMs": 14396
+      }
+    }
+  ]
+}
