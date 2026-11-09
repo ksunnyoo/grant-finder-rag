@@ -29,8 +29,8 @@ def mean(xs):
     return sum(xs) / len(xs) if xs else 0.0
 
 
-def load_golden():
-    with GOLDEN.open(encoding="utf-8") as f:
+def load_golden(path):
+    with Path(path).open(encoding="utf-8") as f:
         return [json.loads(line) for line in f if line.strip()]
 
 
@@ -125,6 +125,7 @@ def main():
     load_dotenv()
     ap = argparse.ArgumentParser()
     ap.add_argument("--k", type=int, default=5)
+    ap.add_argument("--golden", default=str(GOLDEN))
     ap.add_argument("--as-of", default=None)
     ap.add_argument("--skip-e2e", action="store_true")
     ap.add_argument("--e2e-limit", type=int, default=12)
@@ -132,7 +133,7 @@ def main():
     ap.add_argument("--providers", default="gemini,groq")
     args = ap.parse_args()
     as_of = date.fromisoformat(args.as_of or os.getenv("AS_OF_DATE") or "2026-11-06")
-    items = load_golden()
+    items = load_golden(args.golden)
     print(f"골든셋 {len(items)}문항, 기준일 {as_of}")
 
     retriever, store = build_retriever(with_reranker=True)

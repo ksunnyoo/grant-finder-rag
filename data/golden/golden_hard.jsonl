@@ -1,0 +1,15 @@
+{"qid": "H001", "type": "lookup", "subtype": "meta", "question": "고양산업진흥원에서 진행하는 '시설·공간·보육' 분야 지원사업 알려줘", "gold_ids": ["179536"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "H002", "type": "lookup", "subtype": "meta", "question": "한국기술교육대학교 앵커사업단에서 진행하는 '사업화' 분야 지원사업 알려줘", "gold_ids": ["179662"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "H003", "type": "lookup", "subtype": "meta", "question": "서강대학교 창업지원단에서 진행하는 '멘토링·컨설팅·교육' 분야 지원사업 알려줘", "gold_ids": ["179207"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "H004", "type": "lookup", "subtype": "meta", "question": "동대문구 창업지원센터에서 진행하는 '시설·공간·보육' 분야 지원사업 알려줘", "gold_ids": ["179707"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "H005", "type": "lookup", "subtype": "meta", "question": "부산대학교병원장에서 진행하는 '시설·공간·보육' 분야 지원사업 알려줘", "gold_ids": ["179696"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "H006", "type": "lookup", "subtype": "meta", "question": "(재)창원산업진흥원에서 진행하는 '멘토링·컨설팅·교육' 분야 지원사업 알려줘", "gold_ids": ["176978"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "H007", "type": "lookup", "subtype": "meta", "question": "파트너스라운지(유)에서 진행하는 '사업화' 분야 지원사업 알려줘", "gold_ids": ["179686"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "H008", "type": "lookup", "subtype": "meta", "question": "(재)강원창조경제혁신센터에서 진행하는 '행사·네트워크' 분야 지원사업 알려줘", "gold_ids": ["179386"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "H009", "type": "lookup", "subtype": "keyword", "question": "이어지는, 스케일업까지 관련 공고 알려줘", "gold_ids": ["179693"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "H010", "type": "lookup", "subtype": "keyword", "question": "해외진출, 언어장벽을 관련 공고 알려줘", "gold_ids": ["179618"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "H011", "type": "lookup", "subtype": "keyword", "question": "되어있는, 중소기업과의 관련 공고 알려줘", "gold_ids": ["179703"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "H012", "type": "lookup", "subtype": "keyword", "question": "로컬창업트랙을, 창업자를 관련 공고 알려줘", "gold_ids": ["179678"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "H013", "type": "lookup", "subtype": "keyword", "question": "기업가로, 생활기반 관련 공고 알려줘", "gold_ids": ["176940"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "H014", "type": "lookup", "subtype": "keyword", "question": "구성하고자, 바이오헬스산업의 관련 공고 알려줘", "gold_ids": ["177275"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "H015", "type": "lookup", "subtype": "keyword", "question": "예비창업자가, 사업모델로 관련 공고 알려줘", "gold_ids": ["179688"], "match_count": 1, "expect_refuse": false, "conditions": {}}
