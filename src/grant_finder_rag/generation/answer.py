@@ -6,8 +6,7 @@ from grant_finder_rag.contracts.models import AnswerDraft, Candidate
 
 NO_EVIDENCE = "[근거 없음]"
 MAX_CONTEXT_CHARS = 1000
-CITATION = re.compile(r"\[(?:공고\s*)?(\d+)\]")
-
+CITATION = re.compile(r"\[(?:공고\s*)?(\d+(?:\s*,\s*\d+)*)\]")
 SYSTEM_PROMPT = """당신은 K-Startup 지원사업 공고를 안내하는 도우미입니다.
 규칙:
 1. [공고 목록]에 있는 내용만 근거로 한국어로 답합니다. 목록에 없는 내용은 추측하지 않습니다.
@@ -35,16 +34,19 @@ def build_prompt(question: str, candidates: list[Candidate], as_of_date: date) -
 
 
 def extract_citations(answer: str, valid_ids: set[str]) -> tuple[str, list[str]]:
-    """검색 결과에 없는 번호의 인용은 지우고, 유효한 번호를 등장 순서대로 돌려준다."""
+    """검색 결과에 없는 번호의 인용은 지우고, 유효한 번호를 등장 순서대로 돌려준다.
+
+    [1, 2]처럼 한 괄호에 묶인 인용도 번호별로 나누어 검사한다."""
     cited: list[str] = []
 
     def replace(match: re.Match) -> str:
-        number = match.group(1)
-        if number not in valid_ids:
-            return ""
-        if number not in cited:
-            cited.append(number)
-        return f"[{number}]"
+        kept = []
+        for number in re.split(r"\s*,\s*", match.group(1)):
+            if number in valid_ids:
+                kept.append(number)
+                if number not in cited:
+                    cited.append(number)
+        return "".join(f"[{n}]" for n in kept)
 
     return CITATION.sub(replace, answer).strip(), cited
 
