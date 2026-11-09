@@ -35,3 +35,15 @@ class LLMPort(Protocol):
     name: str
 
     def generate(self, system: str, prompt: str) -> str: ...
+
+
+class RetrieverPort(Protocol):
+    def retrieve(
+        self,
+        query: str,
+        mode: str = "hybrid",
+        candidates: int = 20,
+        top_k: int = 5,
+        rerank: bool = True,
+        filters: SearchFilters | None = None,
+    ) -> tuple[list[Candidate], dict[str, int]]: ...

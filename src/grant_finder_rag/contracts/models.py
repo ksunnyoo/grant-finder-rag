@@ -55,7 +55,52 @@ class SearchFilters(BaseModel):
     end_from: date | None = None
     end_to: date | None = None
 
+    def has_conditions(self) -> bool:
+        """질문에서 지역·대상 등 구조화된 조건이 하나라도 추출되었는가."""
+        return bool(
+            self.region
+            or self.target
+            or self.biz_age
+            or self.age is not None
+            or self.category
+            or self.end_from
+            or self.end_to
+        )
+
 
 class LLMResult(BaseModel):
     text: str
     provider: str
+
+
+class AnswerDraft(BaseModel):
+    answer: str | None
+    refused: bool
+    refuse_reason: str | None = None
+    provider: str | None = None
+    cited_ids: list[str] = []
+
+
+class Source(BaseModel):
+    id: str
+    title: str
+    agency: str | None = None
+    category: str | None = None
+    region: str | None = None
+    end_date: str | None = None
+    d_day: int | None = None
+    snippet: str = ""
+    url: str | None = None
+    flags: list[str] = []
+
+
+class AskResult(BaseModel):
+    answer: str | None
+    refused: bool
+    refuse_reason: str | None = None
+    sources: list[Source] = []
+    applied_filters: dict = {}
+    llm_provider: str | None = None
+    as_of_date: str
+    stages: dict[str, int] = {}
+    latency_ms: int = 0

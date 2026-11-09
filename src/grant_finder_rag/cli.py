@@ -9,10 +9,12 @@ from dotenv import load_dotenv
 
 from grant_finder_rag.embedding.bm25_sparse import Bm25SparseEncoder
 from grant_finder_rag.embedding.ollama_embedder import OllamaEmbedder
+from grant_finder_rag.generation.answer import AnswerGenerator
 from grant_finder_rag.generation.fallback_llm import FallbackLLM
 from grant_finder_rag.llm.factory import build_providers, parse_order
 from grant_finder_rag.retrieval.pipeline import Retriever
 from grant_finder_rag.retrieval.query_analyzer import analyze_query
+from grant_finder_rag.service import AskService
 from grant_finder_rag.storage.qdrant_store import QdrantStore
 
 
@@ -72,6 +74,39 @@ def cmd_llm_test(args: argparse.Namespace) -> None:
     print(result.text)
 
 
+def _d_day_label(d_day: int | None) -> str:
+    if d_day is None:
+        return "마감일 미기재"
+    if d_day > 0:
+        return f"D-{d_day}"
+    return "D-day" if d_day == 0 else "마감"
+
+
+def cmd_ask(args: argparse.Namespace) -> None:
+    load_dotenv()
+    as_of = date.fromisoformat(args.as_of or os.getenv("AS_OF_DATE") or date.today().isoformat())
+    retriever, store = build_retriever(with_reranker=True)
+    generator = AnswerGenerator(
+        build_llm(args.providers), refuse_threshold=float(os.getenv("REFUSE_THRESHOLD", "0"))
+    )
+    service = AskService(retriever, generator, as_of)
+    try:
+        result = service.ask(args.query)
+    finally:
+        store.close()
+
+    if result.refused:
+        print(f"[답변 거절] 사유: {result.refuse_reason}")
+    else:
+        print(result.answer)
+    for s in result.sources:
+        flags = f" ({', '.join(s.flags)})" if s.flags else ""
+        print(f"- [{s.id}] {s.title} | {s.region} | {s.end_date} {_d_day_label(s.d_day)}{flags}")
+        print(f"  {s.url}")
+    print("적용된 필터:", result.applied_filters)
+    print(f"공급자: {result.llm_provider} | 단계별 시간(ms): {result.stages} | 총 {result.latency_ms}ms")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="grant-rag")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -90,6 +125,12 @@ def main() -> None:
     llm_test.add_argument("prompt")
     llm_test.add_argument("--providers", help="예: ollama 또는 gemini,groq (기본은 .env)")
     llm_test.set_defaults(func=cmd_llm_test)
+
+    ask = sub.add_parser("ask", help="질문에 답변 (검색 + 생성 + 출처)")
+    ask.add_argument("query")
+    ask.add_argument("--providers", help="예: gemini 또는 ollama,gemini (기본은 .env)")
+    ask.add_argument("--as-of", help="기준일 (YYYY-MM-DD). 기본은 .env의 AS_OF_DATE")
+    ask.set_defaults(func=cmd_ask)
 
     args = parser.parse_args()
     args.func(args)
