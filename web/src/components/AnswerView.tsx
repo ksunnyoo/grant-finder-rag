@@ -2,19 +2,31 @@ import { FILTER_LABELS, REFUSE_MESSAGES } from "../format";
 import type { AskResponse } from "../types";
 
 const CITATION = /(\[\d+(?:\s*,\s*\d+)*\])/;
+const CITATION_ONLY = /^\[(\d+(?:\s*,\s*\d+)*)\]$/;
+
+function splitAnswer(text: string) {
+	let offset = 0;
+	return text
+		.replace(/^[*-] /gm, "• ")
+		.split(CITATION)
+		.map((part) => {
+			const item = { key: String(offset), part };
+			offset += part.length;
+			return item;
+		});
+}
 
 function AnswerText({ text }: { text: string }) {
-	const parts = text.replace(/^[*-] /gm, "• ").split(CITATION);
 	return (
 		<p className="whitespace-pre-wrap text-sm leading-7 text-slate-800">
-			{parts.map((part, i) => {
-				const m = part.match(/^\[(\d+(?:\s*,\s*\d+)*)\]$/);
+			{splitAnswer(text).map(({ key, part }) => {
+				const m = part.match(CITATION_ONLY);
 				if (!m) return part;
 				return m[1].split(",").map((raw) => {
 					const id = raw.trim();
 					return (
 						<a
-							key={`${i}-${id}`}
+							key={`${key}-${id}`}
 							href={`#src-${id}`}
 							className="mx-0.5 rounded bg-blue-50 px-1 text-xs font-medium text-blue-700 hover:bg-blue-100"
 						>
