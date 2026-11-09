@@ -138,8 +138,13 @@ cd web && npm install && npm run dev   # http://localhost:5173
 평가와 테스트:
 
 ~~~bash
-uv run python scripts/build_golden.py
-uv run python scripts/run_eval.py --skip-e2e
+uv run python scripts/build_golden.py              # 쉬운 질문 -> data/golden/golden.jsonl
+uv run python scripts/build_golden_hard.py         # 어려운 질문
+uv run python scripts/build_golden_rare.py         # 희귀 단어 질문
+uv run python scripts/build_golden_paraphrase.py   # 의미 같은 질문
+uv run python scripts/run_eval.py --skip-e2e       # 쉬운 질문 세트로 검색 구성 비교 (서버를 끈 상태에서)
+uv run python scripts/run_eval.py --golden data/golden/golden_hard.jsonl --skip-e2e
+uv run python scripts/export_eval.py               # 데모 평가 탭용 web/public/demo/eval.json 생성
 uv run pytest
 uv run ruff check .
 ~~~
