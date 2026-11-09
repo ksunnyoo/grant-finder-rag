@@ -369,3 +369,16 @@ Vite `base`를 저장소 경로로 설정하고 `HashRouter`를 사용한다. �
 |---|---|---|
 | v0.1 | 2026-11-06 | 초안 |
 | v0.2 | 2026-11-06 | 데이터 조사 반영: 문서 구조 단순화, 필터 의미·기준일, 프론트엔드·재생 데모, FallbackLLM, `stages`, 로그인 제외 |
+
+## 부록 B. 구현 중 변경 사항 (2026-11-09)
+
+설계와 구현이 달라진 부분을 기록한다.
+
+- 연령: `age_min`/`age_max` 대신 `age_ranges`(구간 목록)로 저장한다
+- 분야와 지역은 단일 문자열이다
+- 패키지: `llm/`(공급자 어댑터), `api/`(FastAPI)를 추가했고, `service.py`는 최상위에서 검색과 생성을 조합한다. 리랭커 어댑터는 `embedding/`에 둔다
+- 거절 사유에 `NO_CITATION`을 추가했다. 인용 검증 시간은 `generate` 단계에 포함한다
+- 조건 추출은 규칙 기반이다. 분야 자동 추출은 일반 단어 오인으로 정답을 잃는 문제(EVALUATION E-009)가 있어 기본으로 끄고 화면 선택으로만 지정한다 (`extract_category`)
+- API: `GET /api/notices/{id}`는 구현하지 않았다(저장소에 id 직접 조회가 없고 출처 카드가 발췌와 원문 링크를 담는다). 응답과 요청은 camelCase이며 오류는 `{"error": {"code", "message"}}` 형식이다. Qdrant 파일 모드의 단일 프로세스 제약 때문에 요청을 한 번에 하나씩 처리한다
+- 구성 코드 위치: `api/app.py`가 `cli.py`의 `build_retriever`, `build_llm`을 가져다 쓴다. 구성 코드를 `bootstrap.py`로 옮겨야 한다 (기술 부채)
+- 재생 데모: 화면을 `vite build --mode demo`로 빌드하고 저장된 응답(`web/public/demo/demo.json`)을 읽는다. GitHub Actions로 GitHub Pages에 배포한다

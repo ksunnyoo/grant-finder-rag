@@ -4,6 +4,10 @@
 
 모든 구성 요소를 **무료**로 쓰도록 만들었습니다. 임베딩과 리랭커는 로컬에서 돌리고, 답변 생성은 로컬 Ollama 또는 무료 한도의 Gemini/Groq를 씁니다.
 
+## 데모
+
+**[재생 데모 열기](https://ksunnyoo.github.io/grant-finder-rag/)**: 미리 저장한 질문 8개(조건 질문 6개, 거절 사례 2개)의 응답을 재생합니다. 서버 없이 동작하며 로그인이 필요 없습니다. 직접 질문하려면 아래 실행 방법으로 로컬에서 실행해야 합니다.
+
 ## 진행 상태
 
 | 구분 | 상태 |
@@ -11,8 +15,8 @@
 | 수집, 정제, 색인 | 완료 |
 | 검색(hybrid + 필터 + 리랭커), 답변 생성, 인용 검사, 거절 | 완료 (CLI) |
 | 평가(골든셋 65문항, 구성 비교) | 완료 |
-| FastAPI, React 화면 | 예정 |
-| GitHub Pages 재생 데모(백엔드 없이 저장된 응답을 재생) | 예정 |
+| FastAPI 서버, React 화면 | 완료 |
+| GitHub Pages 재생 데모(백엔드 없이 저장된 응답을 재생) | 완료 |
 | 로그인, 이력 저장(Supabase) | v1.1 로드맵 |
 
 ## 동작 방식
@@ -74,9 +78,9 @@
 
 - 공고의 구조화된 지역 값이 본문과 다른 경우가 있습니다(예: 본문은 경기·인천인데 지역 값은 전국). 값을 고치지 않고 그대로 씁니다.
 - 통합공고 2,098건은 사업 소개가 연결되지 않았고, 22,436건은 제외 대상 문구가 없습니다.
-- 첫 질문은 리랭커 모델 로딩 때문에 느립니다. 일반 응답은 6~14초이며 대부분 리랭커와 LLM 호출 시간입니다.
+- 첫 질문은 리랭커 모델 로딩 때문에 느립니다. 일반 응답은 6~18초이며 대부분 리랭커와 LLM 호출 시간입니다.
 - Gemini/Groq는 무료 한도가 있고 모델 이름이 바뀝니다. 모델을 찾지 못하는 오류(404)는 설계상 다음 공급자로 넘어가지 않습니다. 무료 한도의 입력은 공급자가 서비스 개선에 쓸 수 있으므로 개인정보를 보내지 않습니다.
-- 공고 데이터는 저장소에 포함하지 않습니다. 본인의 K-Startup API 키로 직접 수집해야 합니다.
+- 전체 공고 데이터는 저장소에 포함하지 않습니다(재생 데모용 응답 8건의 발췌와 원문 링크만 포함). 본인의 K-Startup API 키로 직접 수집해야 합니다. 데이터셋의 이용허락범위는 "제한 없음"입니다(공공데이터포털 확인).
 - 답변은 참고용입니다. 신청 자격과 마감일은 반드시 공고 원문에서 확인해야 합니다.
 
 ## 실행 방법
@@ -106,6 +110,17 @@ uv run python -m grant_finder_rag.ingestion.index
 uv run python -m grant_finder_rag.cli ask "서울 예비창업자가 신청할 수 있는 사업 알려줘" --providers gemini
 uv run python -m grant_finder_rag.cli search "아산 투자유치" --mode hybrid -k 5
 ~~~
+
+서버와 화면 실행 (Ollama가 켜져 있어야 합니다):
+
+~~~bash
+LLM_PROVIDER_ORDER=gemini,groq uv run uvicorn grant_finder_rag.api.app:app --port 8000
+cd web && npm install && npm run dev   # http://localhost:5173
+~~~
+
+- API: `POST /api/ask`, `GET /api/meta`, `GET /api/health`. 요청과 응답 필드는 camelCase이고 오류는 `{"error": {"code", "message"}}` 형식입니다
+- 서버를 켜 둔 동안에는 Qdrant 파일을 다른 프로그램(`cli`, `run_eval`)이 열 수 없습니다
+- 재생 데모 다시 만들기: 서버를 끄고 `uv run python scripts/export_demo.py` 실행 후 `cd web && npm run build:demo`
 
 평가와 테스트:
 
