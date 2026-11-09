@@ -1,6 +1,6 @@
 {
   "asOfDate": "2026-11-06",
-  "generatedAt": "2026-11-09T15:50:16",
+  "generatedAt": "2026-11-09T16:46:00",
   "sets": [
     {
       "id": "easy",
@@ -188,6 +188,69 @@
           "precisionDate": 0.0,
           "precisionMulti": 0.0,
           "medianMs": 138
+        }
+      ]
+    },
+    {
+      "id": "paraphrase",
+      "title": "의미 같은 질문",
+      "description": "제목의 핵심 단어 없이 뜻만 같게 바꿔 쓴 질문입니다. 의미 검색(dense)에 유리한 설계입니다.",
+      "evaluated": "15문항",
+      "hasPrecision": false,
+      "metrics": [
+        {
+          "name": "C0 dense",
+          "hitAtK": 0.6666666666666666,
+          "mrr": 0.43555555555555553,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 38
+        },
+        {
+          "name": "C1 +hybrid",
+          "hitAtK": 0.7333333333333333,
+          "mrr": 0.49111111111111116,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 150
+        },
+        {
+          "name": "C2 +filter",
+          "hitAtK": 0.9333333333333333,
+          "mrr": 0.7444444444444446,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 209
+        },
+        {
+          "name": "C3 +rerank",
+          "hitAtK": 0.9333333333333333,
+          "mrr": 0.9333333333333333,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 3030
+        },
+        {
+          "name": "F-dense (dense+필터)",
+          "hitAtK": 0.8,
+          "mrr": 0.8,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 70
+        },
+        {
+          "name": "F-sparse (sparse+필터)",
+          "hitAtK": 0.7333333333333333,
+          "mrr": 0.5777777777777778,
+          "precisionFilter": 0.0,
+          "precisionDate": 0.0,
+          "precisionMulti": 0.0,
+          "medianMs": 173
         }
       ]
     }
@@ -558,7 +621,7 @@
   "limits": [
     "세트당 15문항이라 1문항이 6.7%p입니다. 작은 차이는 우연과 구분되지 않습니다.",
     "필터 없는 구성은 마감된 공고까지 검색하므로 필터를 켠 구성과의 차이에는 마감 공고 제외 효과가 섞여 있습니다.",
-    "어려운 질문과 희귀 단어 질문은 정확한 단어가 들어가도록 설계되어 단어 일치 방식(sparse)에 유리합니다. 의미는 같고 단어가 다른 질문은 시험하지 않았습니다.",
+    "어려운 질문과 희귀 단어 질문은 정확한 단어가 들어가도록 설계되어 단어 일치 방식(sparse)에 유리합니다. 의미는 같고 단어가 다른 질문(의미 같은 질문)은 15문항으로만 시험했고, 그중 비슷한 공고가 여럿인 질문 1개는 정답이 하나로 정해지지 않습니다.",
     "쉬운 질문은 제목을 거의 그대로 써서 필터를 켠 모든 구성이 만점이며 방식 간 차이를 가를 수 없습니다.",
     "범위 밖 질문 대부분은 주제가 완전히 다른 쉬운 질문이라 거절 정확도를 일반화할 수 없습니다.",
     "출처가 붙은 답변 비율은 형식만 확인하며 문장이 근거와 맞는지는 측정하지 않았습니다."
