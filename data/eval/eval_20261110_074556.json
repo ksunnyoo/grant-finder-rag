@@ -1,0 +1,104 @@
+{
+  "as_of": "2026-11-06",
+  "k": 5,
+  "threshold": "0.05",
+  "golden": "data/golden/golden_paraphrase.jsonl",
+  "retrieval": {
+    "C0 dense": {
+      "hit_at_k": 0.6666666666666666,
+      "mrr": 0.43555555555555553,
+      "precision": {
+        "filter": 0.0,
+        "date": 0.0,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 37.812209004187025,
+      "lookup_misses": [
+        "P003",
+        "P004",
+        "P005",
+        "P009",
+        "P012"
+      ]
+    },
+    "C1 +hybrid": {
+      "hit_at_k": 0.7333333333333333,
+      "mrr": 0.49111111111111116,
+      "precision": {
+        "filter": 0.0,
+        "date": 0.0,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 147.15487501234747,
+      "lookup_misses": [
+        "P004",
+        "P005",
+        "P009",
+        "P012"
+      ]
+    },
+    "C2 +filter": {
+      "hit_at_k": 0.9333333333333333,
+      "mrr": 0.7444444444444446,
+      "precision": {
+        "filter": 0.0,
+        "date": 0.0,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 205.68204199662432,
+      "lookup_misses": [
+        "P009"
+      ]
+    },
+    "C3 +rerank": {
+      "hit_at_k": 0.9333333333333333,
+      "mrr": 0.9333333333333333,
+      "precision": {
+        "filter": 0.0,
+        "date": 0.0,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 3079.2650420044083,
+      "lookup_misses": [
+        "P009"
+      ]
+    },
+    "F-dense (dense+필터)": {
+      "hit_at_k": 0.8,
+      "mrr": 0.8,
+      "precision": {
+        "filter": 0.0,
+        "date": 0.0,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 72.66062501003034,
+      "lookup_misses": [
+        "P005",
+        "P009",
+        "P012"
+      ]
+    },
+    "F-sparse (sparse+필터)": {
+      "hit_at_k": 0.7333333333333333,
+      "mrr": 0.5777777777777778,
+      "precision": {
+        "filter": 0.0,
+        "date": 0.0,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 172.3590420006076,
+      "lookup_misses": [
+        "P004",
+        "P006",
+        "P008",
+        "P009"
+      ]
+    }
+  }
+}

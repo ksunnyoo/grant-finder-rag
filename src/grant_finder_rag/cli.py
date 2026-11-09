@@ -3,39 +3,13 @@ import argparse
 import os
 import time
 from datetime import date
-from pathlib import Path
 
 from dotenv import load_dotenv
 
-from grant_finder_rag.embedding.bm25_sparse import Bm25SparseEncoder
-from grant_finder_rag.embedding.ollama_embedder import OllamaEmbedder
+from grant_finder_rag.bootstrap import build_llm, build_retriever, refuse_threshold
 from grant_finder_rag.generation.answer import AnswerGenerator
-from grant_finder_rag.generation.fallback_llm import FallbackLLM
-from grant_finder_rag.llm.factory import build_providers, parse_order
-from grant_finder_rag.retrieval.pipeline import Retriever
 from grant_finder_rag.retrieval.query_analyzer import analyze_query
 from grant_finder_rag.service import AskService
-from grant_finder_rag.storage.qdrant_store import QdrantStore
-
-
-def build_retriever(with_reranker: bool) -> tuple[Retriever, QdrantStore]:
-    reranker = None
-    if with_reranker:
-        from grant_finder_rag.embedding.bge_reranker import BgeReranker
-
-        reranker = BgeReranker()
-    embedder = OllamaEmbedder(
-        base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"),
-        model=os.getenv("OLLAMA_EMBED_MODEL", "bge-m3"),
-    )
-    sparse_encoder = Bm25SparseEncoder.load(Path("data/index/bm25.json"))
-    store = QdrantStore()
-    return Retriever(embedder, sparse_encoder, store, reranker), store
-
-
-def build_llm(order_text: str | None = None) -> FallbackLLM:
-    order = parse_order(order_text or os.getenv("LLM_PROVIDER_ORDER", "ollama"))
-    return FallbackLLM(build_providers(order, os.environ))
 
 
 def cmd_search(args: argparse.Namespace) -> None:
@@ -87,7 +61,7 @@ def cmd_ask(args: argparse.Namespace) -> None:
     as_of = date.fromisoformat(args.as_of or os.getenv("AS_OF_DATE") or date.today().isoformat())
     retriever, store = build_retriever(with_reranker=True)
     generator = AnswerGenerator(
-        build_llm(args.providers), refuse_threshold=float(os.getenv("REFUSE_THRESHOLD", "0.05"))
+        build_llm(args.providers), refuse_threshold=refuse_threshold()
     )
     service = AskService(retriever, generator, as_of)
     try:

@@ -14,6 +14,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field
 from pydantic.alias_generators import to_camel
 
+from grant_finder_rag.bootstrap import refuse_threshold
 from grant_finder_rag.contracts.errors import LLMUnavailableError
 from grant_finder_rag.contracts.models import SearchFilters
 from grant_finder_rag.generation.answer import AnswerGenerator
@@ -72,7 +73,7 @@ def create_app(service=None, as_of: date | None = None) -> FastAPI:
         store = None
         app.state.lock = threading.Lock()
         if service is None:
-            from grant_finder_rag.cli import build_llm, build_retriever
+            from grant_finder_rag.bootstrap import build_llm, build_retriever
 
             load_dotenv()
             app.state.as_of = date.fromisoformat(
@@ -81,7 +82,7 @@ def create_app(service=None, as_of: date | None = None) -> FastAPI:
             retriever, store = build_retriever(with_reranker=True)
             generator = AnswerGenerator(
                 build_llm(os.getenv("LLM_PROVIDER_ORDER")),
-                refuse_threshold=float(os.getenv("REFUSE_THRESHOLD", "0.05")),
+                refuse_threshold=refuse_threshold(),
             )
             app.state.service = AskService(retriever, generator, app.state.as_of)
         else:
@@ -127,7 +128,7 @@ def create_app(service=None, as_of: date | None = None) -> FastAPI:
             "regions": list(REGIONS),
             "targets": list(TARGETS),
             "categories": list(CATEGORIES),
-            "refuseThreshold": float(os.getenv("REFUSE_THRESHOLD", "0.05")),
+            "refuseThreshold": refuse_threshold(),
         }
 
     @app.post("/api/ask")

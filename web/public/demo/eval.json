@@ -1,6 +1,6 @@
 {
   "asOfDate": "2026-11-06",
-  "generatedAt": "2026-11-09T16:46:00",
+  "generatedAt": "2026-11-10T07:45:57",
   "sets": [
     {
       "id": "easy",
@@ -214,7 +214,7 @@
           "precisionFilter": 0.0,
           "precisionDate": 0.0,
           "precisionMulti": 0.0,
-          "medianMs": 150
+          "medianMs": 147
         },
         {
           "name": "C2 +filter",
@@ -223,7 +223,7 @@
           "precisionFilter": 0.0,
           "precisionDate": 0.0,
           "precisionMulti": 0.0,
-          "medianMs": 209
+          "medianMs": 206
         },
         {
           "name": "C3 +rerank",
@@ -232,7 +232,7 @@
           "precisionFilter": 0.0,
           "precisionDate": 0.0,
           "precisionMulti": 0.0,
-          "medianMs": 3030
+          "medianMs": 3079
         },
         {
           "name": "F-dense (dense+필터)",
@@ -241,7 +241,7 @@
           "precisionFilter": 0.0,
           "precisionDate": 0.0,
           "precisionMulti": 0.0,
-          "medianMs": 70
+          "medianMs": 73
         },
         {
           "name": "F-sparse (sparse+필터)",
@@ -250,7 +250,7 @@
           "precisionFilter": 0.0,
           "precisionDate": 0.0,
           "precisionMulti": 0.0,
-          "medianMs": 173
+          "medianMs": 172
         }
       ]
     }

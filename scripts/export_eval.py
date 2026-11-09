@@ -7,9 +7,12 @@ from pathlib import Path
 
 EVAL_DIR = Path("data/eval")
 OUT = Path("web/public/demo/eval.json")
-HARD_FILE = "eval_20261109_150643.json"
-RARE_FILE = "eval_20261109_150537.json"
-PARA_FILE = "eval_20261109_162852.json"
+# 골든셋 기록이 없는 이전 결과 파일 (이후 실행부터는 결과 파일에 golden 경로가 저장된다)
+LEGACY = {
+    "golden_hard.jsonl": "eval_20261109_150643.json",
+    "golden_rare.jsonl": "eval_20261109_150537.json",
+    "golden_paraphrase.jsonl": "eval_20261109_162852.json",
+}
 
 LIMITS = [
     "세트당 15문항이라 1문항이 6.7%p입니다. 작은 차이는 우연과 구분되지 않습니다.",
@@ -23,6 +26,18 @@ LIMITS = [
 
 def load(path):
     return json.loads(Path(path).read_text(encoding="utf-8"))
+
+
+def find_result(golden_name):
+    """골든셋 이름으로 가장 최근 결과 파일을 찾는다. 기록이 없으면 이전 파일 이름을 쓴다."""
+    for f in sorted(EVAL_DIR.glob("eval_*.json"), reverse=True):
+        res = load(f)
+        if "retrieval" in res and Path(res.get("golden") or "").name == golden_name:
+            print(f"{golden_name}: {f.name}")
+            return res
+    legacy = LEGACY[golden_name]
+    print(f"{golden_name}: {legacy} (golden 기록이 없는 이전 파일)")
+    return load(EVAL_DIR / legacy)
 
 
 def metrics(result):
@@ -63,7 +78,7 @@ def main():
             "description": "제목 없이 기관+분야, 본문에만 나오는 단어로 묻는 질문입니다.",
             "evaluated": "15문항",
             "hasPrecision": False,
-            "metrics": metrics(load(EVAL_DIR / HARD_FILE)),
+            "metrics": metrics(find_result("golden_hard.jsonl")),
         },
         {
             "id": "rare",
@@ -71,7 +86,7 @@ def main():
             "description": "한 공고에만 나오는 고유명사·영문 단어 2개로 묻는 질문입니다.",
             "evaluated": "15문항",
             "hasPrecision": False,
-            "metrics": metrics(load(EVAL_DIR / RARE_FILE)),
+            "metrics": metrics(find_result("golden_rare.jsonl")),
         },
         {
             "id": "paraphrase",
@@ -79,7 +94,7 @@ def main():
             "description": "제목의 핵심 단어 없이 뜻만 같게 바꿔 쓴 질문입니다. 의미 검색(dense)에 유리한 설계입니다.",
             "evaluated": "15문항",
             "hasPrecision": False,
-            "metrics": metrics(load(EVAL_DIR / PARA_FILE)),
+            "metrics": metrics(find_result("golden_paraphrase.jsonl")),
         },
     ]
 

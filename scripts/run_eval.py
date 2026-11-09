@@ -10,7 +10,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from grant_finder_rag.cli import build_llm, build_retriever
+from grant_finder_rag.bootstrap import build_llm, build_retriever, refuse_threshold
 from grant_finder_rag.generation.answer import AnswerGenerator
 from grant_finder_rag.retrieval.query_analyzer import analyze_query
 from grant_finder_rag.service import AskService
@@ -77,7 +77,7 @@ def eval_retrieval(retriever, items, as_of, k):
 
 
 def eval_e2e(retriever, items, as_of, providers, limit, pause):
-    threshold = float(os.getenv("REFUSE_THRESHOLD", "0.05"))
+    threshold = refuse_threshold()
     generator = AnswerGenerator(build_llm(providers), refuse_threshold=threshold)
     service = AskService(retriever, generator, as_of)
     no_answer = [i for i in items if i["type"] == "no_answer"]
@@ -139,7 +139,7 @@ def main():
     print(f"골든셋 {len(items)}문항, 기준일 {as_of}")
 
     retriever, store = build_retriever(with_reranker=True)
-    result = {"as_of": str(as_of), "k": args.k, "threshold": os.getenv("REFUSE_THRESHOLD")}
+    result = {"as_of": str(as_of), "k": args.k, "threshold": refuse_threshold(), "golden": args.golden}
     try:
         print("1단계: 검색 구성 비교 (LLM 없음)")
         result["retrieval"] = eval_retrieval(retriever, items, as_of, args.k)

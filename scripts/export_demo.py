@@ -9,7 +9,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 from grant_finder_rag.api.app import to_camel_keys
-from grant_finder_rag.cli import build_llm, build_retriever
+from grant_finder_rag.bootstrap import build_llm, build_retriever, refuse_threshold
 from grant_finder_rag.generation.answer import AnswerGenerator
 from grant_finder_rag.service import AskService
 
@@ -32,7 +32,7 @@ def main():
     retriever, store = build_retriever(with_reranker=True)
     generator = AnswerGenerator(
         build_llm(os.getenv("LLM_PROVIDER_ORDER")),
-        refuse_threshold=float(os.getenv("REFUSE_THRESHOLD", "0.05")),
+        refuse_threshold=refuse_threshold(),
     )
     service = AskService(retriever, generator, as_of)
     items = []

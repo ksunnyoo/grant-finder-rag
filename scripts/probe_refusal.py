@@ -3,7 +3,7 @@ from datetime import date
 
 from dotenv import load_dotenv
 
-from grant_finder_rag.cli import build_retriever
+from grant_finder_rag.bootstrap import build_retriever
 from grant_finder_rag.retrieval.query_analyzer import analyze_query
 
 load_dotenv()
