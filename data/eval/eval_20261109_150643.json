@@ -1,0 +1,110 @@
+{
+  "as_of": "2026-11-06",
+  "k": 5,
+  "threshold": "0.05",
+  "retrieval": {
+    "C0 dense": {
+      "hit_at_k": 0.4666666666666667,
+      "mrr": 0.20444444444444443,
+      "precision": {
+        "filter": 0.0,
+        "date": 0.0,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 36.61937499418855,
+      "lookup_misses": [
+        "H001",
+        "H004",
+        "H008",
+        "H009",
+        "H010",
+        "H011",
+        "H013",
+        "H015"
+      ]
+    },
+    "C1 +hybrid": {
+      "hit_at_k": 0.4666666666666667,
+      "mrr": 0.3222222222222222,
+      "precision": {
+        "filter": 0.0,
+        "date": 0.0,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 142.65516700106673,
+      "lookup_misses": [
+        "H001",
+        "H004",
+        "H008",
+        "H009",
+        "H010",
+        "H011",
+        "H013",
+        "H015"
+      ]
+    },
+    "C2 +filter": {
+      "hit_at_k": 0.8666666666666667,
+      "mrr": 0.788888888888889,
+      "precision": {
+        "filter": 0.0,
+        "date": 0.0,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 199.02162499784026,
+      "lookup_misses": [
+        "H011",
+        "H015"
+      ]
+    },
+    "C3 +rerank": {
+      "hit_at_k": 0.9333333333333333,
+      "mrr": 0.8466666666666666,
+      "precision": {
+        "filter": 0.0,
+        "date": 0.0,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 3026.533084004768,
+      "lookup_misses": [
+        "H011"
+      ]
+    },
+    "F-dense (dense+필터)": {
+      "hit_at_k": 0.7333333333333333,
+      "mrr": 0.7,
+      "precision": {
+        "filter": 0.0,
+        "date": 0.0,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 68.13416699878871,
+      "lookup_misses": [
+        "H009",
+        "H011",
+        "H013",
+        "H015"
+      ]
+    },
+    "F-sparse (sparse+필터)": {
+      "hit_at_k": 0.8666666666666667,
+      "mrr": 0.8333333333333334,
+      "precision": {
+        "filter": 0.0,
+        "date": 0.0,
+        "multi": 0.0
+      },
+      "empty": 0,
+      "median_ms": 169.22925000835676,
+      "lookup_misses": [
+        "H011",
+        "H015"
+      ]
+    }
+  }
+}

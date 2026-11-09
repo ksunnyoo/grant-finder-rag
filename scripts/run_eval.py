@@ -22,6 +22,8 @@ CONFIGS = {
     "C1 +hybrid": {"mode": "hybrid", "rerank": False, "use_filter": False},
     "C2 +filter": {"mode": "hybrid", "rerank": False, "use_filter": True},
     "C3 +rerank": {"mode": "hybrid", "rerank": True, "use_filter": True},
+    "F-dense (dense+필터)": {"mode": "dense", "rerank": False, "use_filter": True},
+    "F-sparse (sparse+필터)": {"mode": "sparse", "rerank": False, "use_filter": True},
 }
 
 

@@ -1,0 +1,15 @@
+{"qid": "R001", "type": "lookup", "subtype": "rare", "question": "대덕연구개발특구, holdings 관련 공고 알려줘", "gold_ids": ["179528"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "R002", "type": "lookup", "subtype": "rare", "question": "commercializ, support 관련 공고 알려줘", "gold_ids": ["178803"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "R003", "type": "lookup", "subtype": "rare", "question": "visa, Ministry 관련 공고 알려줘", "gold_ids": ["171419"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "R004", "type": "lookup", "subtype": "rare", "question": "강원특별자치도경제진흥원, 강원지식재산센터 관련 공고 알려줘", "gold_ids": ["176248"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "R005", "type": "lookup", "subtype": "rare", "question": "ZOOM, 서강대학교 관련 공고 알려줘", "gold_ids": ["179207"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "R006", "type": "lookup", "subtype": "rare", "question": "PROOF, 충남대학교 관련 공고 알려줘", "gold_ids": ["179664"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "R007", "type": "lookup", "subtype": "rare", "question": "장수군, 크립톤 관련 공고 알려줘", "gold_ids": ["179672"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "R008", "type": "lookup", "subtype": "rare", "question": "FDA, NMPA 관련 공고 알려줘", "gold_ids": ["179545"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "R009", "type": "lookup", "subtype": "rare", "question": "송민용, 미키김 관련 공고 알려줘", "gold_ids": ["179649"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "R010", "type": "lookup", "subtype": "rare", "question": "엠아이텍, 세라젬 관련 공고 알려줘", "gold_ids": ["179662"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "R011", "type": "lookup", "subtype": "rare", "question": "메인콘텐츠, 인포뱅크 관련 공고 알려줘", "gold_ids": ["179559"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "R012", "type": "lookup", "subtype": "rare", "question": "여성창업플라자, 도곡역 관련 공고 알려줘", "gold_ids": ["179561"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "R013", "type": "lookup", "subtype": "rare", "question": "Twin, Automation 관련 공고 알려줘", "gold_ids": ["179692"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "R014", "type": "lookup", "subtype": "rare", "question": "웨비나, Engine 관련 공고 알려줘", "gold_ids": ["179711"], "match_count": 1, "expect_refuse": false, "conditions": {}}
+{"qid": "R015", "type": "lookup", "subtype": "rare", "question": "후가공, FAB 관련 공고 알려줘", "gold_ids": ["176442"], "match_count": 1, "expect_refuse": false, "conditions": {}}
