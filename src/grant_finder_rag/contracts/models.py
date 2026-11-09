@@ -54,3 +54,8 @@ class SearchFilters(BaseModel):
     include_closed: bool = False
     end_from: date | None = None
     end_to: date | None = None
+
+
+class LLMResult(BaseModel):
+    text: str
+    provider: str

@@ -39,7 +39,8 @@ src/grant_finder_rag/
   contracts/   모델(Notice, SearchDoc, ...), Port(Protocol), 예외
   ingestion/   collect, parse, clean, normalize, compose, report (CLI 전용)
   storage/     Qdrant 어댑터, 파일 저장
-  embedding/   Ollama 임베더, kiwipiepy 희소 인코더
+  embedding/   Ollama 임베더, kiwipiepy 희소 인코더, 리랭커 어댑터
+  llm/         LLM 어댑터 (Ollama, Gemini, Groq)
   retrieval/   질문 분석, hybrid 검색, 리랭커, 필터
   generation/  프롬프트, FallbackLLM, 출처 검증, 거절 판단
   evaluation/  골든셋 로더, 지표, 방식 비교, 데모 내보내기

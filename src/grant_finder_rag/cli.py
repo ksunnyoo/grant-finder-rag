@@ -1,6 +1,7 @@
 """명령줄 진입점. 구현체를 여기서 연결한다."""
 import argparse
 import os
+import time
 from datetime import date
 from pathlib import Path
 
@@ -8,6 +9,8 @@ from dotenv import load_dotenv
 
 from grant_finder_rag.embedding.bm25_sparse import Bm25SparseEncoder
 from grant_finder_rag.embedding.ollama_embedder import OllamaEmbedder
+from grant_finder_rag.generation.fallback_llm import FallbackLLM
+from grant_finder_rag.llm.factory import build_providers, parse_order
 from grant_finder_rag.retrieval.pipeline import Retriever
 from grant_finder_rag.retrieval.query_analyzer import analyze_query
 from grant_finder_rag.storage.qdrant_store import QdrantStore
@@ -26,6 +29,11 @@ def build_retriever(with_reranker: bool) -> tuple[Retriever, QdrantStore]:
     sparse_encoder = Bm25SparseEncoder.load(Path("data/index/bm25.json"))
     store = QdrantStore()
     return Retriever(embedder, sparse_encoder, store, reranker), store
+
+
+def build_llm(order_text: str | None = None) -> FallbackLLM:
+    order = parse_order(order_text or os.getenv("LLM_PROVIDER_ORDER", "ollama"))
+    return FallbackLLM(build_providers(order, os.environ))
 
 
 def cmd_search(args: argparse.Namespace) -> None:
@@ -54,9 +62,20 @@ def cmd_search(args: argparse.Namespace) -> None:
     print("단계별 시간(ms):", stages)
 
 
+def cmd_llm_test(args: argparse.Namespace) -> None:
+    load_dotenv()
+    llm = build_llm(args.providers)
+    started = time.perf_counter()
+    result = llm.generate("당신은 한국어로 간결하게 답하는 도우미입니다.", args.prompt)
+    elapsed = round((time.perf_counter() - started) * 1000)
+    print(f"공급자: {result.provider} ({elapsed}ms)")
+    print(result.text)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="grant-rag")
     sub = parser.add_subparsers(dest="command", required=True)
+
     search = sub.add_parser("search", help="검색 결과만 출력")
     search.add_argument("query")
     search.add_argument("--mode", choices=["dense", "sparse", "hybrid"], default="hybrid")
@@ -66,6 +85,12 @@ def main() -> None:
     search.add_argument("--as-of", help="기준일 (YYYY-MM-DD). 기본은 .env의 AS_OF_DATE")
     search.add_argument("-k", type=int, default=5)
     search.set_defaults(func=cmd_search)
+
+    llm_test = sub.add_parser("llm-test", help="LLM 공급자 동작 확인")
+    llm_test.add_argument("prompt")
+    llm_test.add_argument("--providers", help="예: ollama 또는 gemini,groq (기본은 .env)")
+    llm_test.set_defaults(func=cmd_llm_test)
+
     args = parser.parse_args()
     args.func(args)
 

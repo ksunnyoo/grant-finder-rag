@@ -29,3 +29,9 @@ class SearchPort(Protocol):
 
 class RerankerPort(Protocol):
     def rerank(self, query: str, texts: list[str]) -> list[float]: ...
+
+
+class LLMPort(Protocol):
+    name: str
+
+    def generate(self, system: str, prompt: str) -> str: ...
