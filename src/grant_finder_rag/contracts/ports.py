@@ -1,7 +1,7 @@
 """외부 서비스 접점(Port) 정의. 구현은 embedding, storage 등에 둔다."""
 from typing import Protocol
 
-from grant_finder_rag.contracts.models import Candidate, SparseVec
+from grant_finder_rag.contracts.models import Candidate, SearchFilters, SparseVec
 
 
 class EmbedderPort(Protocol):
@@ -16,7 +16,12 @@ class SparseEncoderPort(Protocol):
 
 class SearchPort(Protocol):
     def search(
-        self, dense: list[float], sparse: SparseVec, mode: str, limit: int
+        self,
+        dense: list[float],
+        sparse: SparseVec,
+        mode: str,
+        limit: int,
+        filters: SearchFilters | None = None,
     ) -> list[Candidate]:
         """mode: 'dense' | 'sparse' | 'hybrid'"""
         ...

@@ -1,7 +1,7 @@
 """질문 -> 검색 -> (리랭크) -> 상위 N건. Port만 사용한다."""
 import time
 
-from grant_finder_rag.contracts.models import Candidate
+from grant_finder_rag.contracts.models import Candidate, SearchFilters
 from grant_finder_rag.contracts.ports import (
     EmbedderPort,
     RerankerPort,
@@ -34,6 +34,7 @@ class Retriever:
         candidates: int = 20,
         top_k: int = 5,
         rerank: bool = True,
+        filters: SearchFilters | None = None,
     ) -> tuple[list[Candidate], dict[str, int]]:
         """리랭크를 쓰면 후보 candidates건을 찾아 재정렬하고, 아니면 top_k건만 찾는다."""
         use_rerank = rerank and self.reranker is not None
@@ -42,7 +43,8 @@ class Retriever:
         started = time.perf_counter()
         dense = self.embedder.embed([query])[0]
         sparse = self.sparse_encoder.encode_query(query)
-        found = self.search.search(dense, sparse, mode, candidates if use_rerank else top_k)
+        limit = candidates if use_rerank else top_k
+        found = self.search.search(dense, sparse, mode, limit, filters)
         stages["search"] = _ms(started)
 
         if use_rerank and found:

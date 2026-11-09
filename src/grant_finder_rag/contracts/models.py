@@ -40,3 +40,17 @@ class Candidate(BaseModel):
     score: float
     rerank_score: float | None = None
     payload: dict = {}
+
+
+class SearchFilters(BaseModel):
+    """검색 조건. 비어 있는 항목은 조건 없음."""
+
+    as_of_date: date
+    region: list[str] = []
+    target: list[str] = []
+    biz_age: list[str] = []
+    age: int | None = None
+    category: list[str] = []
+    include_closed: bool = False
+    end_from: date | None = None
+    end_to: date | None = None

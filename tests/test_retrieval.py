@@ -18,7 +18,7 @@ class FakeSearch:
         self.candidates = candidates
         self.calls = []
 
-    def search(self, dense, sparse, mode, limit):
+    def search(self, dense, sparse, mode, limit, filters=None):
         self.calls.append((mode, limit))
         return self.candidates[:limit]
 
