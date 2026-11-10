@@ -45,6 +45,7 @@ CATEGORIES = {
     "시설·공간·보육": ["입주", "보육", "공간"],
 }
 BIZ_AGE_BUCKETS = [1, 2, 3, 5, 7, 10]
+BIZ_AGE_OPTIONS = ["예비창업자"] + [f"{b}년미만" for b in BIZ_AGE_BUCKETS]
 CLOSED_WORDS = ["마감 포함", "마감된", "지난 공고", "종료된"]
 
 

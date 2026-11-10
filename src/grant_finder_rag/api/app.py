@@ -20,7 +20,12 @@ from grant_finder_rag.bootstrap import refuse_threshold
 from grant_finder_rag.contracts.errors import LLMUnavailableError
 from grant_finder_rag.contracts.models import SearchFilters
 from grant_finder_rag.generation.answer import AnswerGenerator
-from grant_finder_rag.retrieval.query_analyzer import CATEGORIES, REGIONS, TARGETS
+from grant_finder_rag.retrieval.query_analyzer import (
+    BIZ_AGE_OPTIONS,
+    CATEGORIES,
+    REGIONS,
+    TARGETS,
+)
 from grant_finder_rag.service import AskService
 
 logger = logging.getLogger(__name__)
@@ -164,6 +169,7 @@ def create_app(
             "regions": list(REGIONS),
             "targets": list(TARGETS),
             "categories": list(CATEGORIES),
+            "bizAges": list(BIZ_AGE_OPTIONS),
             "refuseThreshold": refuse_threshold(),
         }
 

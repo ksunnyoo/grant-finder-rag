@@ -84,3 +84,11 @@ def test_meta_and_health():
     assert meta["asOfDate"] == "2026-11-06"
     assert "서울" in meta["regions"]
     assert health == {"status": "ok"}
+
+
+def test_meta_includes_biz_age_options():
+    with make_client(FakeService()) as c:
+        meta = c.get("/api/meta").json()
+    assert meta["bizAges"][0] == "예비창업자"
+    assert "3년미만" in meta["bizAges"]
+    assert meta["bizAges"][-1] == "10년미만"
