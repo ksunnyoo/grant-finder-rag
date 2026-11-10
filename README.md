@@ -155,6 +155,7 @@ uv run python scripts/run_eval.py --golden data/golden/golden_hard.jsonl --skip-
 uv run python scripts/export_eval.py               # 데모 평가 탭용 web/public/demo/eval.json 생성
 uv run pytest
 uv run ruff check .
+(cd web && npm test)                     # 웹 단위 테스트
 ~~~
 
 주요 환경 변수: `KSTARTUP_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `LLM_PROVIDER_ORDER`, `AS_OF_DATE`, `REFUSE_THRESHOLD`
@@ -190,7 +191,7 @@ uv run ruff check .
 AI가 작성한 초안을 그대로 쓰지 않고, 아래 순서로 확인한 뒤 고쳤습니다.
 
 - **요구사항:** 코드를 요청하기 전에 `docs/PRD.md`, `docs/SDD.md`에 범위와 입출력, 오류 처리를 먼저 적었습니다. 문서에 없는 기능은 문서를 먼저 고친 뒤 구현합니다(`CLAUDE.md`).
-- **검증:** `pytest`(Fake Port 사용), `ruff`, `biome`, 골든셋 95문항 평가, 환경 변수 없이 처음부터 실행해 보는 확인. `main`에 올릴 때마다 GitHub Actions가 pytest, ruff, biome, 웹 빌드를 자동으로 실행합니다(`.github/workflows/ci.yml`).
+- **검증:** `pytest`(Fake Port 사용), `ruff`, `biome`, 골든셋 95문항 평가, 환경 변수 없이 처음부터 실행해 보는 확인. `main`에 올릴 때마다 GitHub Actions가 pytest, ruff, biome, 웹 단위 테스트(vitest, 조건 검증 함수 8개), 웹 빌드를 자동으로 실행합니다(`.github/workflows/ci.yml`).
 - **기록:** 실험과 오류는 실행 일시와 함께 `docs/EVALUATION.md`에 남겼습니다.
 
 초안을 고친 사례입니다.
