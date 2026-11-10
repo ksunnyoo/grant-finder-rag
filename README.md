@@ -1,5 +1,7 @@
 # grant-finder-rag
 
+[![CI](https://github.com/ksunnyoo/grant-finder-rag/actions/workflows/ci.yml/badge.svg)](https://github.com/ksunnyoo/grant-finder-rag/actions/workflows/ci.yml)
+
 정부 창업지원사업 공고(K-Startup 공공데이터)를 대상으로 하는 **한국어 RAG**입니다. "서울 예비창업자가 신청할 수 있는 사업 알려줘"처럼 물으면 조건(지역, 업력, 마감 시기)을 질문에서 추출해 검색하고, **공고번호 출처가 붙은 답변**을 만듭니다. 근거가 없으면 답하지 않고 거절합니다.
 
 모든 구성 요소를 **무료**로 쓰도록 만들었습니다. 임베딩과 리랭커는 로컬에서 돌리고, 답변 생성은 로컬 Ollama 또는 무료 한도의 Gemini/Groq를 씁니다.
@@ -188,7 +190,7 @@ uv run ruff check .
 AI가 작성한 초안을 그대로 쓰지 않고, 아래 순서로 확인한 뒤 고쳤습니다.
 
 - **요구사항:** 코드를 요청하기 전에 `docs/PRD.md`, `docs/SDD.md`에 범위와 입출력, 오류 처리를 먼저 적었습니다. 문서에 없는 기능은 문서를 먼저 고친 뒤 구현합니다(`CLAUDE.md`).
-- **검증:** `pytest`(Fake Port 사용), `ruff`, `biome`, 골든셋 95문항 평가, 환경 변수 없이 처음부터 실행해 보는 확인.
+- **검증:** `pytest`(Fake Port 사용), `ruff`, `biome`, 골든셋 95문항 평가, 환경 변수 없이 처음부터 실행해 보는 확인. `main`에 올릴 때마다 GitHub Actions가 pytest, ruff, biome, 웹 빌드를 자동으로 실행합니다(`.github/workflows/ci.yml`).
 - **기록:** 실험과 오류는 실행 일시와 함께 `docs/EVALUATION.md`에 남겼습니다.
 
 초안을 고친 사례입니다.
