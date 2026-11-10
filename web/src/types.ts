@@ -28,6 +28,7 @@ export type Meta = {
 	regions: string[];
 	targets: string[];
 	categories: string[];
+	bizAges: string[];
 	refuseThreshold: number;
 };
 
@@ -35,5 +36,9 @@ export type FilterInput = {
 	region?: string[];
 	target?: string[];
 	category?: string[];
+	bizAge?: string[];
+	age?: number;
+	endFrom?: string;
+	endTo?: string;
 	includeClosed?: boolean;
 };

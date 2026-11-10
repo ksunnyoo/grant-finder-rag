@@ -7,7 +7,7 @@ import { EvalView } from "./components/EvalView";
 import { SavedView } from "./components/SavedView";
 import { SourceCard } from "./components/SourceCard";
 import { StageTimeline } from "./components/StageTimeline";
-import { EMPTY_CONDITION, toFilterInput } from "./condition";
+import { conditionError, EMPTY_CONDITION, toFilterInput } from "./condition";
 import { type DemoData, loadDemo } from "./demo";
 import {
 	addHistory,
@@ -97,6 +97,11 @@ export default function App() {
 	async function submit(text: string) {
 		const q = text.trim();
 		if (!q || loading) return;
+		const invalid = conditionError(condition);
+		if (invalid) {
+			setError(invalid);
+			return;
+		}
 		setLoading(true);
 		setError(null);
 		try {

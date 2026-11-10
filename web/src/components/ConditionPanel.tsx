@@ -1,4 +1,4 @@
-import type { Condition } from "../condition";
+import { type Condition, conditionError } from "../condition";
 import type { Meta } from "../types";
 
 type Props = {
@@ -35,7 +35,31 @@ function Select(props: {
 	);
 }
 
+function Field(props: {
+	label: string;
+	type: "number" | "date";
+	value: string;
+	min?: number;
+	max?: number;
+	onChange: (v: string) => void;
+}) {
+	return (
+		<label className="block text-xs font-medium text-slate-600">
+			{props.label}
+			<input
+				type={props.type}
+				className={`${SELECT_CLASS} mt-1`}
+				value={props.value}
+				min={props.min}
+				max={props.max}
+				onChange={(e) => props.onChange(e.target.value)}
+			/>
+		</label>
+	);
+}
+
 export function ConditionPanel({ meta, value, onChange }: Props) {
+	const error = conditionError(value);
 	return (
 		<div className="rounded-lg border border-slate-200 bg-white p-4">
 			<p className="mb-3 text-xs text-slate-500">
@@ -62,6 +86,39 @@ export function ConditionPanel({ meta, value, onChange }: Props) {
 					onChange={(category) => onChange({ ...value, category })}
 				/>
 			</div>
+			<div className="mt-3 grid gap-3 sm:grid-cols-4">
+				<Select
+					label="업력"
+					value={value.bizAge}
+					options={meta?.bizAges ?? []}
+					onChange={(bizAge) => onChange({ ...value, bizAge })}
+				/>
+				<Field
+					label="연령(만 나이)"
+					type="number"
+					min={0}
+					max={120}
+					value={value.age}
+					onChange={(age) => onChange({ ...value, age })}
+				/>
+				<Field
+					label="마감 시작일"
+					type="date"
+					value={value.endFrom}
+					onChange={(endFrom) => onChange({ ...value, endFrom })}
+				/>
+				<Field
+					label="마감 종료일"
+					type="date"
+					value={value.endTo}
+					onChange={(endTo) => onChange({ ...value, endTo })}
+				/>
+			</div>
+			{error && (
+				<p role="alert" className="mt-2 text-xs text-red-700">
+					{error}
+				</p>
+			)}
 			<label className="mt-3 flex items-center gap-2 text-sm text-slate-700">
 				<input
 					type="checkbox"
