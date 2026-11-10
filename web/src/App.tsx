@@ -1,13 +1,25 @@
 import { useEffect, useState } from "react";
 import { askQuestion, fetchMeta } from "./api";
 import { AnswerView } from "./components/AnswerView";
+import { AuthBar } from "./components/AuthBar";
 import { ConditionPanel } from "./components/ConditionPanel";
 import { EvalView } from "./components/EvalView";
+import { SavedView } from "./components/SavedView";
 import { SourceCard } from "./components/SourceCard";
 import { StageTimeline } from "./components/StageTimeline";
 import { EMPTY_CONDITION, toFilterInput } from "./condition";
 import { type DemoData, loadDemo } from "./demo";
-import type { AskResponse, Meta } from "./types";
+import {
+	addHistory,
+	type HistoryItem,
+	listBookmarks,
+	listHistory,
+	migrateLocalToAccount,
+	type SavedNotice,
+	toggleBookmark,
+} from "./saved";
+import type { AskResponse, Meta, Source } from "./types";
+import { useAuth } from "./useAuth";
 
 const DEMO = import.meta.env.MODE === "demo";
 const REPO_URL = "https://github.com/ksunnyoo/grant-finder-rag";
@@ -26,12 +38,61 @@ export default function App() {
 	const [loading, setLoading] = useState(false);
 	const [result, setResult] = useState<AskResponse | null>(null);
 	const [error, setError] = useState<string | null>(null);
-	const [tab, setTab] = useState<"ask" | "eval">("ask");
+	const [tab, setTab] = useState<"ask" | "saved" | "eval">("ask");
+	const session = useAuth();
+	const userId = session?.user.id ?? null;
+	const [bookmarks, setBookmarks] = useState<SavedNotice[]>([]);
+	const [history, setHistory] = useState<HistoryItem[]>([]);
 
 	useEffect(() => {
 		const load = DEMO ? loadDemo().then(setDemo) : fetchMeta().then(setMeta);
 		load.catch((e: Error) => setError(e.message));
 	}, []);
+
+	useEffect(() => {
+		void (async () => {
+			try {
+				if (userId) await migrateLocalToAccount();
+				setBookmarks(await listBookmarks(userId));
+				setHistory(await listHistory(userId));
+			} catch (e) {
+				setError(
+					e instanceof Error ? e.message : "저장 목록을 불러오지 못했습니다.",
+				);
+			}
+		})();
+	}, [userId]);
+
+	async function recordHistory(q: string, res: AskResponse) {
+		try {
+			await addHistory(userId, {
+				question: q,
+				refused: res.refused,
+				sourceCount: res.sources.length,
+				createdAt: new Date().toISOString(),
+			});
+			setHistory(await listHistory(userId));
+		} catch {
+			// 이력 저장에 실패해도 질문 사용에는 영향을 주지 않는다.
+		}
+	}
+
+	async function setSaved(notice: SavedNotice, on: boolean) {
+		try {
+			await toggleBookmark(userId, notice, on);
+			setBookmarks(await listBookmarks(userId));
+		} catch (e) {
+			setError(e instanceof Error ? e.message : "저장하지 못했습니다.");
+		}
+	}
+
+	function toggleSource(s: Source) {
+		const on = !bookmarks.some((b) => b.id === s.id);
+		void setSaved(
+			{ id: s.id, title: s.title, endDate: s.endDate, url: s.url },
+			on,
+		);
+	}
 
 	async function submit(text: string) {
 		const q = text.trim();
@@ -39,7 +100,9 @@ export default function App() {
 		setLoading(true);
 		setError(null);
 		try {
-			setResult(await askQuestion(q, toFilterInput(condition)));
+			const res = await askQuestion(q, toFilterInput(condition));
+			setResult(res);
+			void recordHistory(q, res);
 		} catch (e) {
 			setResult(null);
 			setError(
@@ -54,9 +117,10 @@ export default function App() {
 		setQuestion(q);
 		if (DEMO) {
 			setError(null);
-			setResult(
-				demo?.items.find((item) => item.question === q)?.response ?? null,
-			);
+			const res =
+				demo?.items.find((item) => item.question === q)?.response ?? null;
+			setResult(res);
+			if (res) void recordHistory(q, res);
 		} else {
 			void submit(q);
 		}
@@ -70,18 +134,22 @@ export default function App() {
 	return (
 		<div className="min-h-screen bg-slate-50 text-slate-900">
 			<main className="mx-auto max-w-3xl space-y-4 px-4 py-8">
-				<header>
-					<h1 className="text-xl font-bold">창업지원사업 공고 검색</h1>
-					<p className="mt-1 text-sm text-slate-600">
-						K-Startup 공고를 근거로 답하고, 근거가 없으면 답하지 않습니다.
-						{asOfDate && ` 기준일 ${asOfDate}`}
-					</p>
+				<header className="flex flex-wrap items-start justify-between gap-3">
+					<div>
+						<h1 className="text-xl font-bold">창업지원사업 공고 검색</h1>
+						<p className="mt-1 text-sm text-slate-600">
+							K-Startup 공고를 근거로 답하고, 근거가 없으면 답하지 않습니다.
+							{asOfDate && ` 기준일 ${asOfDate}`}
+						</p>
+					</div>
+					<AuthBar session={session} />
 				</header>
 
 				<nav className="flex gap-1 border-b border-slate-200 text-sm">
 					{(
 						[
 							["ask", "질문"],
+							["saved", `저장함 (관심 공고 ${bookmarks.length})`],
 							["eval", "평가 결과"],
 						] as const
 					).map(([id, label]) => (
@@ -100,9 +168,18 @@ export default function App() {
 					))}
 				</nav>
 
-				{tab === "eval" ? (
-					<EvalView />
-				) : (
+				{tab === "eval" && <EvalView />}
+
+				{tab === "saved" && (
+					<SavedView
+						bookmarks={bookmarks}
+						history={history}
+						loggedIn={userId !== null}
+						onRemove={(n) => void setSaved(n, false)}
+					/>
+				)}
+
+				{tab === "ask" && (
 					<>
 						{DEMO && (
 							<div className="rounded-lg border border-blue-200 bg-blue-50 p-3 text-sm text-blue-900">
@@ -201,7 +278,12 @@ export default function App() {
 											근거 공고 {result.sources.length}건
 										</h2>
 										{result.sources.map((s) => (
-											<SourceCard key={s.id} source={s} />
+											<SourceCard
+												key={s.id}
+												source={s}
+												saved={bookmarks.some((b) => b.id === s.id)}
+												onToggleSave={() => toggleSource(s)}
+											/>
 										))}
 									</section>
 								)}

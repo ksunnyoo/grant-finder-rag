@@ -1,7 +1,13 @@
 import { dDayLabel, dDayTone } from "../format";
 import type { Source } from "../types";
 
-export function SourceCard({ source }: { source: Source }) {
+type Props = {
+	source: Source;
+	saved?: boolean;
+	onToggleSave?: () => void;
+};
+
+export function SourceCard({ source, saved = false, onToggleSave }: Props) {
 	const meta = [source.region, source.category, source.agency]
 		.filter(Boolean)
 		.join(" · ");
@@ -37,14 +43,25 @@ export function SourceCard({ source }: { source: Source }) {
 					))}
 				</div>
 			)}
-			<a
-				href={source.url}
-				target="_blank"
-				rel="noreferrer"
-				className="mt-3 inline-block text-xs font-medium text-blue-700 hover:underline"
-			>
-				원문 공고 보기 ↗
-			</a>
+			<div className="mt-3 flex items-center gap-3">
+				<a
+					href={source.url}
+					target="_blank"
+					rel="noreferrer"
+					className="text-xs font-medium text-blue-700 hover:underline"
+				>
+					원문 공고 보기 ↗
+				</a>
+				{onToggleSave && (
+					<button
+						type="button"
+						onClick={onToggleSave}
+						className="rounded border border-slate-300 px-2 py-0.5 text-xs hover:bg-slate-100"
+					>
+						{saved ? "★ 저장됨" : "☆ 저장"}
+					</button>
+				)}
+			</div>
 		</article>
 	);
 }
