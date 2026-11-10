@@ -5,6 +5,7 @@ import os
 import threading
 from contextlib import asynccontextmanager
 from datetime import date
+from pathlib import Path
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, Request
@@ -14,6 +15,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field
 from pydantic.alias_generators import to_camel
 
+from grant_finder_rag.api.request_log import RequestLog
 from grant_finder_rag.bootstrap import refuse_threshold
 from grant_finder_rag.contracts.errors import LLMUnavailableError
 from grant_finder_rag.contracts.models import SearchFilters
@@ -67,7 +69,34 @@ def to_explicit(filters: FilterIn | None, as_of: date) -> SearchFilters | None:
     return SearchFilters(as_of_date=as_of, **given)
 
 
-def create_app(service=None, as_of: date | None = None) -> FastAPI:
+def record_ask(request: Request, question: str, data: dict) -> None:
+    """질문 처리 결과를 요청 로그에 남긴다. 질문 내용은 글자 수만 기록한다."""
+    log = getattr(request.app.state, "request_log", None)
+    if log is None:
+        return
+    log.write(
+        {
+            "event": "ask",
+            "question_chars": len(question),
+            "refused": bool(data.get("refused")),
+            "refuse_reason": data.get("refuse_reason"),
+            "provider": data.get("llm_provider"),
+            "latency_ms": data.get("latency_ms"),
+            "stages": data.get("stages") or {},
+            "sources": len(data.get("sources") or []),
+        }
+    )
+
+
+def record_error(request: Request, code: str, exc: Exception) -> None:
+    log = getattr(request.app.state, "request_log", None)
+    if log is not None:
+        log.write({"event": "error", "code": code, "type": type(exc).__name__, "path": request.url.path})
+
+
+def create_app(
+    service=None, as_of: date | None = None, request_log: RequestLog | None = None
+) -> FastAPI:
     @asynccontextmanager
     async def lifespan(app: FastAPI):
         store = None
@@ -76,6 +105,9 @@ def create_app(service=None, as_of: date | None = None) -> FastAPI:
             from grant_finder_rag.bootstrap import build_llm, build_retriever
 
             load_dotenv()
+            app.state.request_log = RequestLog(
+                Path(os.getenv("REQUEST_LOG_PATH", "logs/requests.jsonl"))
+            )
             app.state.as_of = date.fromisoformat(
                 os.getenv("AS_OF_DATE") or date.today().isoformat()
             )
@@ -87,6 +119,7 @@ def create_app(service=None, as_of: date | None = None) -> FastAPI:
             app.state.service = AskService(retriever, generator, app.state.as_of)
         else:
             app.state.service = service
+            app.state.request_log = request_log
             app.state.as_of = as_of or date(2026, 11, 6)
         try:
             yield
@@ -104,10 +137,12 @@ def create_app(service=None, as_of: date | None = None) -> FastAPI:
 
     @app.exception_handler(RequestValidationError)
     async def on_validation_error(request: Request, exc: RequestValidationError):
+        record_error(request, "INVALID_REQUEST", exc)
         return error_response(400, "INVALID_REQUEST", "요청 형식이 올바르지 않습니다.")
 
     @app.exception_handler(LLMUnavailableError)
     async def on_llm_unavailable(request: Request, exc: LLMUnavailableError):
+        record_error(request, "LLM_UNAVAILABLE", exc)
         return error_response(
             503, "LLM_UNAVAILABLE", "답변 생성 서비스를 사용할 수 없습니다. 잠시 후 다시 시도해 주십시오."
         )
@@ -115,6 +150,7 @@ def create_app(service=None, as_of: date | None = None) -> FastAPI:
     @app.exception_handler(Exception)
     async def on_unexpected_error(request: Request, exc: Exception):
         logger.exception("처리하지 못한 오류")
+        record_error(request, "INTERNAL_ERROR", exc)
         return error_response(500, "INTERNAL_ERROR", "서버 내부 오류가 발생했습니다.")
 
     @app.get("/api/health")
@@ -139,7 +175,9 @@ def create_app(service=None, as_of: date | None = None) -> FastAPI:
         explicit = to_explicit(body.filters, request.app.state.as_of)
         with request.app.state.lock:
             result = request.app.state.service.ask(question, explicit)
-        return to_camel_keys(result.model_dump(mode="json"))
+        data = result.model_dump(mode="json")
+        record_ask(request, question, data)
+        return to_camel_keys(data)
 
     return app
 
