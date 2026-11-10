@@ -156,3 +156,24 @@ uv run ruff check .
 - [`docs/PRD.md`](docs/PRD.md): 요구사항과 일정
 - [`docs/SDD.md`](docs/SDD.md): 설계
 - [`docs/EVALUATION.md`](docs/EVALUATION.md): 실험과 평가 기록 (측정 조건과 한계 포함)
+
+## 선택 로그인과 저장함
+
+로그인하지 않아도 모든 기능을 쓸 수 있습니다. 로그인하면 관심 공고와 질문 이력을 계정에 저장해 다른 기기에서도 볼 수 있습니다.
+
+| 구분 | 저장 위치 |
+|---|---|
+| 로그인 안 함 | 이 브라우저(localStorage)에만 저장 |
+| 로그인함 | 내 계정(Supabase). 로그인할 때 브라우저에 있던 항목을 한 번 옮기고 중복은 넣지 않음 |
+
+- 로그인은 이메일 링크 방식이며 비밀번호가 없습니다.
+- 보안: 화면 코드에는 공개용(publishable) 키만 들어갑니다. 테이블은 행 단위 보안(RLS)으로 본인 행만 읽고 쓸 수 있습니다. `service_role` 키와 DB 비밀번호는 사용하지 않습니다.
+- 한계: 무료 기본 메일은 시간당 발송 수가 적어 `email rate limit exceeded`가 나올 수 있습니다. 무료 프로젝트는 약 7일간 사용이 없으면 일시 중지됩니다. 로그인 없이도 모든 기능이 동작하므로 데모에는 영향이 없습니다.
+- 배포 사이트와 로컬 주소는 서로 다른 출처라 로그인 상태와 브라우저 저장 항목이 이어지지 않습니다.
+
+설정(직접 실행할 때):
+
+1. Supabase 무료 프로젝트에서 `bookmarks`, `history` 테이블과 RLS 정책을 만듭니다.
+2. `web/.env.local`에 `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`를 넣습니다(git에 올라가지 않음).
+3. GitHub Pages 배포는 저장소 Settings → Secrets and variables → Actions → **Variables**(Repository variables)에 같은 이름 두 개를 등록하고, Supabase Authentication → URL Configuration의 Redirect URLs에 배포 주소를 추가합니다.
+
