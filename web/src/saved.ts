@@ -81,17 +81,15 @@ export async function toggleBookmark(
 		return;
 	}
 	if (on) {
-		const { error } = await supabase
-			.from("bookmarks")
-			.upsert(
-				{
-					notice_id: notice.id,
-					title: notice.title,
-					end_date: notice.endDate,
-					url: notice.url,
-				},
-				{ onConflict: "user_id,notice_id" },
-			);
+		const { error } = await supabase.from("bookmarks").upsert(
+			{
+				notice_id: notice.id,
+				title: notice.title,
+				end_date: notice.endDate,
+				url: notice.url,
+			},
+			{ onConflict: "user_id,notice_id" },
+		);
 		if (error) throw new Error(error.message);
 	} else {
 		const { error } = await supabase
