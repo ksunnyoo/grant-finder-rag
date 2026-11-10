@@ -2,7 +2,7 @@
 
 | 항목 | 내용 |
 |---|---|
-| 문서 버전 | v0.2 |
+| 문서 버전 | v0.3 |
 | 작성일 | 2026-11-06 |
 | 관련 문서 | `docs/PRD.md` v0.2, `CLAUDE.md` |
 | 상태 | 설계 확정 (구현 전). 구현 중 달라지는 내용은 12절 변경 이력에 기록한다 |
@@ -369,6 +369,7 @@ Vite `base`를 저장소 경로로 설정하고 `HashRouter`를 사용한다. �
 |---|---|---|
 | v0.1 | 2026-11-06 | 초안 |
 | v0.2 | 2026-11-06 | 데이터 조사 반영: 문서 구조 단순화, 필터 의미·기준일, 프론트엔드·재생 데모, FallbackLLM, `stages`, 로그인 제외 |
+| v0.3 | 2026-11-10 | 선택 로그인과 저장함 추가(부록 C), 구성 코드 `bootstrap.py` 이동 반영 |
 
 ## 부록 B. 구현 중 변경 사항 (2026-11-09)
 
@@ -382,3 +383,37 @@ Vite `base`를 저장소 경로로 설정하고 `HashRouter`를 사용한다. �
 - API: `GET /api/notices/{id}`는 구현하지 않았다(저장소에 id 직접 조회가 없고 출처 카드가 발췌와 원문 링크를 담는다). 응답과 요청은 camelCase이며 오류는 `{"error": {"code", "message"}}` 형식이다. Qdrant 파일 모드의 단일 프로세스 제약 때문에 요청을 한 번에 하나씩 처리한다
 - 구성 코드 위치: `api/app.py`가 `cli.py`의 `build_retriever`, `build_llm`을 가져다 쓴다. 구성 코드를 `bootstrap.py`로 옮겨야 한다 (기술 부채)
 - 재생 데모: 화면을 `vite build --mode demo`로 빌드하고 저장된 응답(`web/public/demo/demo.json`)을 읽는다. GitHub Actions로 GitHub Pages에 배포한다
+
+## 부록 C. 선택 로그인과 저장함 (2026-11-10)
+
+초안(v0.2)은 로그인을 제외하고(v1.1 로드맵) 질문 기록을 Dexie(IndexedDB)로 두었으나, 다음과 같이 바꿔 구현했다.
+
+### C.1 범위와 변경점
+- 로그인은 선택 기능이다. 로그인하지 않아도 모든 기능을 쓸 수 있다.
+- 로드맵의 "FastAPI JWT 로그인" 대신 화면(web)에서 Supabase Auth(이메일 링크)를 직접 사용한다. 백엔드(FastAPI)는 변경하지 않았으며 계속 로컬 실행 전용이다.
+- 8.4의 Dexie 대신 localStorage를 쓴다. 폴더는 `frontend/`가 아니라 `web/src/`이다.
+- 구성 코드는 `src/grant_finder_rag/bootstrap.py`(`build_retriever`, `build_llm`, `refuse_threshold`)로 옮겼다. 부록 B의 기술 부채가 해소되었으며, 거절 기준 기본값 0.05도 이곳 한 곳에서 읽는다.
+
+### C.2 저장 위치
+| 상태 | 관심 공고 | 질문 이력 |
+|---|---|---|
+| 로그인 안 함 | localStorage `grf.bookmarks` | localStorage `grf.history` (최대 50건) |
+| 로그인함 | Supabase `public.bookmarks` | Supabase `public.history` |
+
+로그인하면 브라우저의 항목을 계정으로 한 번 옮기고 성공하면 브라우저 쪽을 비운다. 관심 공고는 `(user_id, notice_id)` 기준으로 덮어쓰고, 이력은 계정에 같은 질문과 시각이 이미 있으면 넣지 않는다. 탭 여러 개가 동시에 옮기지 않도록 `navigator.locks`를 쓰고, 화면에서도 같은 항목은 한 번만 보여 준다.
+
+### C.3 테이블
+- `bookmarks(id, user_id default auth.uid(), notice_id, title, end_date, url, created_at, unique(user_id, notice_id))`
+- `history(id, user_id default auth.uid(), question, refused, source_count, created_at)`
+- 두 테이블 모두 행 단위 보안(RLS)을 켜고, `authenticated` 역할에 `auth.uid() = user_id` 조건의 읽기·쓰기 정책을 둔다.
+
+### C.4 보안과 설정
+- 화면에는 Project URL과 공개용(publishable) 키만 사용한다. `service_role` 키와 DB 비밀번호는 코드, 저장소, 로그 어디에도 두지 않는다.
+- 값은 `web/.env.local`(git 제외)의 `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`로 주며, 빌드 시점에 코드에 포함된다. 값이 없거나 형식이 틀리면 로그인 기능만 꺼지고 나머지는 정상 동작한다.
+- GitHub Pages 배포는 저장소 변수(Repository variables)에 같은 이름 두 개를 등록하고, Supabase의 Redirect URLs에 배포 주소를 추가해야 한다. 워크플로는 `web/` 변경 때만 자동 실행되므로 변수 등록 후에는 수동 실행(`workflow_dispatch`)이 필요하다.
+
+### C.5 한계
+- 무료 기본 메일은 시간당 발송 수가 적어 `email rate limit exceeded`가 나올 수 있다.
+- 무료 프로젝트는 약 7일간 사용이 없으면 일시 중지된다.
+- 배포 주소와 로컬 주소는 출처가 달라 로그인 상태와 브라우저 저장 항목이 이어지지 않는다.
+- 화면 단위 자동 테스트는 없으며, 로그인·저장·이전은 수동 시험으로 확인했다(EVALUATION E-016).
