@@ -99,6 +99,7 @@ export default function App() {
 		if (!q || loading) return;
 		const invalid = conditionError(condition);
 		if (invalid) {
+			setResult(null);
 			setError(invalid);
 			return;
 		}
@@ -262,7 +263,10 @@ export default function App() {
 							<ConditionPanel
 								meta={meta}
 								value={condition}
-								onChange={setCondition}
+								onChange={(next) => {
+									setCondition(next);
+									setError(null);
+								}}
 							/>
 						)}
 
