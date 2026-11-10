@@ -1,6 +1,8 @@
 import { FILTER_LABELS, REFUSE_MESSAGES } from "../format";
 import type { AskResponse } from "../types";
 
+const DEMO = import.meta.env.MODE === "demo";
+
 const CITATION = /(\[\d+(?:\s*,\s*\d+)*\])/;
 const CITATION_ONLY = /^\[(\d+(?:\s*,\s*\d+)*)\]$/;
 
@@ -76,6 +78,14 @@ export function AnswerView({ result }: { result: AskResponse }) {
 						조건을 바꾸거나, 마감된 공고 포함을 켜거나, 질문을 더 구체적으로
 						바꿔 보십시오.
 					</p>
+					{result.refuseReason === "LOW_RELEVANCE" &&
+						chips.length === 0 &&
+						!DEMO && (
+							<p className="mt-1 text-xs text-amber-800">
+								조건 없이 짧게 질문하면 관련도가 낮게 평가되어 거절될 수
+								있습니다. 분야나 지역 같은 조건을 선택하면 다시 확인합니다.
+							</p>
+						)}
 				</div>
 			) : (
 				<div className="rounded-lg border border-slate-200 bg-white p-4">
