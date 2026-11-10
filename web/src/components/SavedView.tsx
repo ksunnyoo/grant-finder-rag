@@ -5,11 +5,26 @@ type Props = {
 	history: HistoryItem[];
 	loggedIn: boolean;
 	onRemove: (notice: SavedNotice) => void;
+	error?: string | null;
 };
 
-export function SavedView({ bookmarks, history, loggedIn, onRemove }: Props) {
+export function SavedView({
+	bookmarks,
+	history,
+	loggedIn,
+	onRemove,
+	error,
+}: Props) {
 	return (
 		<div className="space-y-6">
+			{error && (
+				<p
+					role="alert"
+					className="rounded-lg border border-red-200 bg-red-50 p-3 text-xs text-red-700"
+				>
+					{error}
+				</p>
+			)}
 			<p className="rounded-lg border border-slate-200 bg-white p-3 text-xs text-slate-600">
 				{loggedIn
 					? "계정에 저장된 항목입니다. 다른 기기에서 로그인해도 볼 수 있습니다."

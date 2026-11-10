@@ -156,7 +156,10 @@ export default function App() {
 						<button
 							key={id}
 							type="button"
-							onClick={() => setTab(id)}
+							onClick={() => {
+								setError(null);
+								setTab(id);
+							}}
 							className={
 								tab === id
 									? "border-b-2 border-blue-600 px-3 py-1.5 font-medium text-blue-700"
@@ -176,6 +179,7 @@ export default function App() {
 						history={history}
 						loggedIn={userId !== null}
 						onRemove={(n) => void setSaved(n, false)}
+						error={error}
 					/>
 				)}
 
