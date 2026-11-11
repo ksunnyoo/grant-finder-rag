@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import {
 	type Catalog,
+	effectiveAsOf,
 	filterCatalog,
 	matchKeywords,
 	sortByEnd,
@@ -44,16 +45,19 @@ export function CatalogView({
 		? { ...catalog.meta, refuseThreshold: 0 }
 		: null;
 
+	// 저장 기준일과 오늘 중 늦은 날짜를 기준으로 거르고 D-day를 센다.
+	const asOf = catalog ? effectiveAsOf(catalog.asOfDate) : "";
+
 	const results = useMemo(() => {
 		if (!catalog || invalid) return [];
 		const byCondition = filterCatalog(
 			catalog.items,
 			filter,
-			catalog.asOfDate,
+			asOf,
 			catalog.regionExpansion,
 		);
 		return sortByEnd(matchKeywords(byCondition, keyword));
-	}, [catalog, filter, keyword, invalid]);
+	}, [catalog, filter, keyword, invalid, asOf]);
 
 	return (
 		<>
@@ -125,8 +129,8 @@ export function CatalogView({
 					<h2 className="text-sm font-semibold text-slate-700">
 						조건에 맞는 공고 {results.length}건
 						<span className="ml-2 font-normal text-slate-500">
-							(기준일 {catalog.asOfDate}, 마감 전 공고 {catalog.items.length}건
-							중)
+							(오늘 {asOf} 기준, 목록 수집 기준일 {catalog.asOfDate}, 전체{" "}
+							{catalog.items.length}건 중)
 						</span>
 					</h2>
 					{results.length === 0 && (
@@ -137,7 +141,7 @@ export function CatalogView({
 					{results.slice(0, shown).map((it) => (
 						<SourceCard
 							key={it.id}
-							source={toSource(it, filter, catalog.asOfDate)}
+							source={toSource(it, filter, asOf)}
 							saved={bookmarks.some((b) => b.id === it.id)}
 							onToggleSave={() =>
 								onToggleSave(

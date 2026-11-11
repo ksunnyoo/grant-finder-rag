@@ -107,6 +107,21 @@ export function sortByEnd(items: CatalogItem[]): CatalogItem[] {
 	});
 }
 
+/** 접속한 컴퓨터의 오늘 날짜를 YYYY-MM-DD로 돌려준다. */
+export function todayISO(now: Date = new Date()): string {
+	const m = String(now.getMonth() + 1).padStart(2, "0");
+	const d = String(now.getDate()).padStart(2, "0");
+	return `${now.getFullYear()}-${m}-${d}`;
+}
+
+/** 저장 기준일과 오늘 중 늦은 날짜. 마감된 공고가 시간이 지나면 자동으로 빠지게 한다. */
+export function effectiveAsOf(
+	saved: string,
+	today: string = todayISO(),
+): string {
+	return today > saved ? today : saved;
+}
+
 function daysBetween(from: string, to: string): number {
 	const a = Date.parse(`${from}T00:00:00Z`);
 	const b = Date.parse(`${to}T00:00:00Z`);

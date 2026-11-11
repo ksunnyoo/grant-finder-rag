@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
 	type CatalogItem,
+	effectiveAsOf,
 	filterCatalog,
 	matchKeywords,
 	sortByEnd,
+	todayISO,
 	toSource,
 } from "./catalog";
 
@@ -145,5 +147,26 @@ describe("matchKeywords / sortByEnd / toSource", () => {
 		);
 		expect(s.dDay).toBe(3);
 		expect(s.flags).toEqual(["업력 미기재", "연령 미기재"]);
+	});
+});
+
+describe("오늘 날짜 기준", () => {
+	it("날짜를 YYYY-MM-DD로 만든다", () => {
+		expect(todayISO(new Date(2026, 10, 11))).toBe("2026-11-11");
+		expect(todayISO(new Date(2026, 0, 5))).toBe("2026-01-05");
+	});
+	it("저장 기준일과 오늘 중 늦은 날짜를 쓴다", () => {
+		expect(effectiveAsOf("2026-11-06", "2026-11-11")).toBe("2026-11-11");
+		expect(effectiveAsOf("2026-11-20", "2026-11-11")).toBe("2026-11-20");
+	});
+	it("오늘 기준으로 마감된 공고는 빠지고 D-day가 줄어든다", () => {
+		const items = [
+			item({ id: "gone", endDate: "2026-11-09" }),
+			item({ id: "stay", endDate: "2026-11-30" }),
+		];
+		const asOf = effectiveAsOf("2026-11-06", "2026-11-11");
+		const got = filterCatalog(items, {}, asOf, EXP);
+		expect(ids(got)).toEqual(["stay"]);
+		expect(toSource(got[0], {}, asOf).dDay).toBe(19);
 	});
 });

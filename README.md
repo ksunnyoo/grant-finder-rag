@@ -145,7 +145,7 @@ cd web && npm install && npm run dev   # http://localhost:5173
 - API: `POST /api/ask`, `GET /api/meta`, `GET /api/health`. 요청과 응답 필드는 camelCase이고 오류는 `{"error": {"code", "message"}}` 형식입니다
 - 서버를 켜 둔 동안에는 Qdrant 파일을 다른 프로그램(`cli`, `run_eval`)이 열 수 없습니다
 - 재생 데모 다시 만들기: 서버를 끄고 `uv run python scripts/export_demo.py` 실행 후 `cd web && npm run build:demo`
-- 공고 찾기 목록 갱신: 서버를 끄고 `uv run python scripts/export_catalog.py` 실행 후 `cd web && npm run build:demo` (마감일이 지난 공고가 자동으로 빠지지 않으므로 발표 직전에 갱신)
+- 공고 찾기 목록 갱신: 서버를 끄고 `uv run python scripts/export_catalog.py` 실행 후 `cd web && npm run build:demo` (새 공고를 반영하려면 다시 실행. 마감된 공고는 화면에서 접속한 날짜 기준으로 자동으로 빠집니다)
 
 평가와 테스트:
 
