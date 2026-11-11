@@ -1,0 +1,341 @@
+{
+  "summary": {
+    "n_total": 22,
+    "n_error": 0,
+    "answer_ok": 18,
+    "answer_total": 18,
+    "refuse_ok": 4,
+    "refuse_total": 4,
+    "wrong": []
+  },
+  "rows": [
+    {
+      "qid": "S001",
+      "question": "제조업 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "[경기도 중장년 최초 창업 지원] 2026년 생애 최초 경영안정화 교육지",
+        "2027년 청년 쿡 비즈니스·푸드테크 센터 스타트업 모집 공고",
+        "2026년 중동 상황 대응 규격 컨설팅 지원사업「수혜기업 모집」",
+        "[은행연합회] 청년 소상공인 컨설팅 지원 사업",
+        "[동대문구 창업지원센터] 11월 메이커스페이스(레이저커터, 3D프린팅) "
+      ],
+      "latency_ms": 17768
+    },
+    {
+      "qid": "S002",
+      "question": "바이오 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "2026년 중동 상황 대응 규격 컨설팅 지원사업「수혜기업 모집」",
+        "2026년 K-바이오랩허브 멤버십 기업 모집",
+        "2026년 컴퍼니빌더형 기술·경영 컨설팅 지원사업 TechBiz Vent",
+        "충남 벤처투자포럼 및 IR 컨설팅 지원 사업 참여기업 모집",
+        "바이오 협력, 지금 시작하세요 – 'BioLink Starup Hub'에"
+      ],
+      "latency_ms": 21667
+    },
+    {
+      "qid": "S003",
+      "question": "문화콘텐츠 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "대구콘텐츠기업지원센터 2026년 3차 입주기업 모집",
+        "2027년도 '맞춤형 해외 저작권 바우처 지원' 사업 수행기관 모집 공고",
+        "[경기경영자총협회] 26년 청년일자리도약장려금 사업 참여 기업 모집 안내",
+        "[종로여성인력개발센터] 2026년 청년일자리도약장려금 참여기업 모집 공고",
+        "2026년 초기창업패키지 SM엔터테인먼트 오픈이노베이션 밋업 Cultur"
+      ],
+      "latency_ms": 8748
+    },
+    {
+      "qid": "S004",
+      "question": "로봇 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "2026년 컴퍼니빌더형 기술·경영 컨설팅 지원사업 TechBiz Vent",
+        "[킹고스프링] KINGO SPRINGBOARD PROGRAM 9기",
+        "경남 수도권 투자유치 거점센터 (G-Space@TIPS) 2026 G-D"
+      ],
+      "latency_ms": 8904
+    },
+    {
+      "qid": "S005",
+      "question": "에너지 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "2026년 컴퍼니빌더형 기술·경영 컨설팅 지원사업 TechBiz Vent",
+        "충남 벤처투자포럼 및 IR 컨설팅 지원 사업 참여기업 모집",
+        "2026년 서울 기후테크 기업 및 예비창업자를 위한 멘토링 지원사업 안내"
+      ],
+      "latency_ms": 13285
+    },
+    {
+      "qid": "S006",
+      "question": "환경 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "2026년 서울 기후테크 기업 및 예비창업자를 위한 멘토링 지원사업 안내",
+        "2026년 수출 중소·중견기업을 위한 ESG 공급망 컨설팅 지원사업",
+        "2026년 창업·벤처 녹색융합클러스터 그린아이디어랩 비상주오피스 이용자 "
+      ],
+      "latency_ms": 8781
+    },
+    {
+      "qid": "S007",
+      "question": "교육 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "[경기도 중장년 최초 창업 지원] 2026년 생애 최초 경영안정화 교육지",
+        "[무료 AI 역량강화 교육]생성형 AI 기반 무역 컴플라이언스 및 관세·",
+        "[무료 AI 역량강화 교육] 생성형 AI 기반 무역 금융 리스크 최적화 ",
+        "[무료 AI 역량강화 교육] 글로벌 공공조달 AX 전략 전문가 과정 (선",
+        "구로구 청년창업지원센터 일반 창업교육(하반기: 6회차): 발표평가 자료 "
+      ],
+      "latency_ms": 10696
+    },
+    {
+      "qid": "S008",
+      "question": "의료 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "[부산대학교병원]「의료·헬스케어 스타트업 인큐베이터 사업」입주기업 모집공",
+        "2026년 보건의료빅데이터 창업 인큐베이팅 랩 모집 공고",
+        "G밸리의료기기개발지원센터 글로벌역량강화 교육프로그램 참가자 모집"
+      ],
+      "latency_ms": 9084
+    },
+    {
+      "qid": "S009",
+      "question": "헬스케어 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "2026년 컴퍼니빌더형 기술·경영 컨설팅 지원사업 TechBiz Vent",
+        "[부산대학교병원]「의료·헬스케어 스타트업 인큐베이터 사업」입주기업 모집공",
+        "2026년 보건의료빅데이터 창업 인큐베이팅 랩 모집 공고",
+        "G밸리의료기기개발지원센터 글로벌역량강화 교육프로그램 참가자 모집",
+        "[ZUZU X 삼성화재 집중검토] 헬스케어·모빌리티·AI·홈/라이프 Se"
+      ],
+      "latency_ms": 9695
+    },
+    {
+      "qid": "S010",
+      "question": "모빌리티 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "충남 벤처투자포럼 및 IR 컨설팅 지원 사업 참여기업 모집",
+        "2026년 컴퍼니빌더형 기술·경영 컨설팅 지원사업 TechBiz Vent",
+        "경남 수도권 투자유치 거점센터 (G-Space@TIPS) 2026 G-D",
+        "[ZUZU X 삼성화재 집중검토] 헬스케어·모빌리티·AI·홈/라이프 Se",
+        "[GBSA] 2026 판교스타트업 투자교류회 제 4차 투자교류회"
+      ],
+      "latency_ms": 8569
+    },
+    {
+      "qid": "S011",
+      "question": "해외진출 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "2026년 중소기업 수출 부대비용 지원사업",
+        "2026 글로벌 진출 - 글로벌 진출과 협력 네트워크 확장 전략",
+        "2026년 중동상황 대응 「수출위기 극복 물류지원금」지원사업 모집(지원국",
+        "『글로벌 교류·투자유치 지원사업』2026년 자율형 프로그램 참가 기업 모",
+        "해외진출 기업 대상 AI 통역 서비스 「아네스노트」미팅 통역 이용권 지원"
+      ],
+      "latency_ms": 8869
+    },
+    {
+      "qid": "S012",
+      "question": "특허 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "2026년 특허출원·등록 비용 바우처 지원사업 16차(하반기 9차)",
+        "2026년 IP디딤돌 프로그램 지원대상 모집 공고",
+        "[LH한국토지주택공사] 판교제2테크노밸리 기업지원허브 업무지원시설 선착순",
+        "[LH한국토지주택공사] 판교제2테크노밸리 기업지원허브 업무지원시설(지상 "
+      ],
+      "latency_ms": 8898
+    },
+    {
+      "qid": "S013",
+      "question": "디자인 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "2026 년 홍익대 아트앤디자인테크 창업보육센터 입주기업 모집(2 차) ",
+        "서울디자인재단 「2026 서울디자인런 포럼」 참가 신청",
+        "[인탑스 액셀러레이팅 6기 모집] 제품 디자인·설계·양산부터 IR까지! ",
+        "2026년 3D프린팅 전문기술 활용지원 사업",
+        "[1:1 무료 코칭데이] 하드웨어 스타트업 디자인·설계·금형·양산, 현직"
+      ],
+      "latency_ms": 5462
+    },
+    {
+      "qid": "S014",
+      "question": "반도체 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "2026년 컴퍼니빌더형 기술·경영 컨설팅 지원사업 TechBiz Vent",
+        "[킹고스프링] KINGO SPRINGBOARD PROGRAM 9기",
+        "2026년 창업-Bus 프로그램「강원브릿지 화요IR」 참여기업 모집",
+        "경남 수도권 투자유치 거점센터 (G-Space@TIPS) 2026 G-D",
+        "2026년 5차 국립공주대학교 창업보육센터 입주기업 모집 연장공고"
+      ],
+      "latency_ms": 6985
+    },
+    {
+      "qid": "S015",
+      "question": "물류 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "2026년 중동상황 대응 「수출위기 극복 물류지원금」지원사업 모집(지원국",
+        "2026 명지전문대학 MJC 창업보육(Ⅰ)센터 신규 입주기업 상시모집 안",
+        "제6차 해양수산 투자기관협의회(정기IR) 참여기업 모집공고"
+      ],
+      "latency_ms": 5098
+    },
+    {
+      "qid": "S016",
+      "question": "금융 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "2026년 용산구 청년기업 융자지원사업"
+      ],
+      "latency_ms": 7585
+    },
+    {
+      "qid": "S017",
+      "question": "부동산 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "[LH한국토지주택공사] 판교제2테크노밸리 기업지원허브 업무지원시설 선착순"
+      ],
+      "latency_ms": 8716
+    },
+    {
+      "qid": "S018",
+      "question": "법률 지원사업 알려줘",
+      "expect_refuse": false,
+      "rep": 1,
+      "refused": false,
+      "reason": null,
+      "llm_called": true,
+      "titles": [
+        "2026년 스타트업 법률지원사업 참여기업 모집공고(수정)",
+        "2026년 스타트업 법률지원사업 전남광주통합특별시 법률상담회 참여기업 모"
+      ],
+      "latency_ms": 8519
+    },
+    {
+      "qid": "S019",
+      "question": "패션 지원사업 알려줘",
+      "expect_refuse": true,
+      "rep": 1,
+      "refused": true,
+      "reason": "LOW_RELEVANCE",
+      "llm_called": true,
+      "titles": [],
+      "latency_ms": 7239
+    },
+    {
+      "qid": "S020",
+      "question": "소셜벤처 지원사업 알려줘",
+      "expect_refuse": true,
+      "rep": 1,
+      "refused": true,
+      "reason": "LOW_RELEVANCE",
+      "llm_called": true,
+      "titles": [],
+      "latency_ms": 8239
+    },
+    {
+      "qid": "S021",
+      "question": "자동차 수리 지원사업 알려줘",
+      "expect_refuse": true,
+      "rep": 1,
+      "refused": true,
+      "reason": "LOW_RELEVANCE",
+      "llm_called": false,
+      "titles": [],
+      "latency_ms": 3151
+    },
+    {
+      "qid": "S022",
+      "question": "연예 지원사업 알려줘",
+      "expect_refuse": true,
+      "rep": 1,
+      "refused": true,
+      "reason": "LOW_RELEVANCE",
+      "llm_called": true,
+      "titles": [],
+      "latency_ms": 7094
+    }
+  ]
+}

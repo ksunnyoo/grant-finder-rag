@@ -1,0 +1,22 @@
+{"qid": "S001", "type": "short_topic", "question": "제조업 지원사업 알려줘", "expect_refuse": false, "topic": "제조업"}
+{"qid": "S002", "type": "short_topic", "question": "바이오 지원사업 알려줘", "expect_refuse": false, "topic": "바이오"}
+{"qid": "S003", "type": "short_topic", "question": "문화콘텐츠 지원사업 알려줘", "expect_refuse": false, "topic": "문화콘텐츠"}
+{"qid": "S004", "type": "short_topic", "question": "로봇 지원사업 알려줘", "expect_refuse": false, "topic": "로봇"}
+{"qid": "S005", "type": "short_topic", "question": "에너지 지원사업 알려줘", "expect_refuse": false, "topic": "에너지"}
+{"qid": "S006", "type": "short_topic", "question": "환경 지원사업 알려줘", "expect_refuse": false, "topic": "환경"}
+{"qid": "S007", "type": "short_topic", "question": "교육 지원사업 알려줘", "expect_refuse": false, "topic": "교육"}
+{"qid": "S008", "type": "short_topic", "question": "의료 지원사업 알려줘", "expect_refuse": false, "topic": "의료"}
+{"qid": "S009", "type": "short_topic", "question": "헬스케어 지원사업 알려줘", "expect_refuse": false, "topic": "헬스케어"}
+{"qid": "S010", "type": "short_topic", "question": "모빌리티 지원사업 알려줘", "expect_refuse": false, "topic": "모빌리티"}
+{"qid": "S011", "type": "short_topic", "question": "해외진출 지원사업 알려줘", "expect_refuse": false, "topic": "해외진출"}
+{"qid": "S012", "type": "short_topic", "question": "특허 지원사업 알려줘", "expect_refuse": false, "topic": "특허"}
+{"qid": "S013", "type": "short_topic", "question": "디자인 지원사업 알려줘", "expect_refuse": false, "topic": "디자인"}
+{"qid": "S014", "type": "short_topic", "question": "반도체 지원사업 알려줘", "expect_refuse": false, "topic": "반도체"}
+{"qid": "S015", "type": "short_topic", "question": "물류 지원사업 알려줘", "expect_refuse": false, "topic": "물류"}
+{"qid": "S016", "type": "short_topic", "question": "금융 지원사업 알려줘", "expect_refuse": false, "topic": "금융"}
+{"qid": "S017", "type": "short_topic", "question": "부동산 지원사업 알려줘", "expect_refuse": false, "topic": "부동산"}
+{"qid": "S018", "type": "short_topic", "question": "법률 지원사업 알려줘", "expect_refuse": false, "topic": "법률"}
+{"qid": "S019", "type": "short_topic", "question": "패션 지원사업 알려줘", "expect_refuse": true, "topic": "패션"}
+{"qid": "S020", "type": "short_topic", "question": "소셜벤처 지원사업 알려줘", "expect_refuse": true, "topic": "소셜벤처"}
+{"qid": "S021", "type": "short_topic", "question": "자동차 수리 지원사업 알려줘", "expect_refuse": true, "topic": "자동차 수리"}
+{"qid": "S022", "type": "short_topic", "question": "연예 지원사업 알려줘", "expect_refuse": true, "topic": "연예"}
