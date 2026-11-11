@@ -27,6 +27,8 @@
 
 ## 동작 방식
 
+![전체 구조](docs/images/architecture.svg)
+
 ~~~
 [오프라인] 수집 → 정제·마스킹 → 사업 정보 연결 → 검색 문서 작성 → 임베딩(dense) + BM25(sparse) → Qdrant
 [온라인]   질문 → 조건 추출 → hybrid 검색(RRF) + 필터 → 리랭커 → 거절 검사 → LLM 답변 → 인용 검사

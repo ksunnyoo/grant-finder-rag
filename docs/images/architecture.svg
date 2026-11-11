@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450" role="img" font-family="'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans CJK KR', 'Noto Sans KR', sans-serif">
+<title>grant-finder-rag 전체 아키텍처</title>
+<desc>오프라인 색인, 온라인 질문 처리, 공개 데모의 세 구역으로 이루어진 구조도</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#5F5E5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect width="680" height="450" fill="#FFFFFF"/>
+<text x="40" y="34" font-size="14" font-weight="600" fill="#2C2C2A">오프라인 · 색인 (CLI)</text>
+<rect x="40" y="46" width="130" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+<text x="105" y="68" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#3C3489">공고 수집·정제</text>
+<text x="105" y="86" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#534AB7">K-Startup API</text>
+<rect x="195" y="46" width="130" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+<text x="260" y="68" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#3C3489">임베딩·색인</text>
+<text x="260" y="86" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#534AB7">bge-m3, BM25</text>
+<rect x="350" y="46" width="130" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+<text x="415" y="68" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#3C3489">Qdrant</text>
+<text x="415" y="86" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#534AB7">로컬 파일 모드</text>
+<line x1="172" y1="74" x2="193" y2="74" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="327" y1="74" x2="348" y2="74" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="40" y="148" font-size="14" font-weight="600" fill="#2C2C2A">온라인 · 질문 처리 (FastAPI, 로컬)</text>
+<rect x="40" y="160" width="130" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+<text x="105" y="182" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#085041">React 화면</text>
+<text x="105" y="200" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">질문, 조건 패널</text>
+<rect x="195" y="160" width="130" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+<text x="260" y="182" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#085041">질문 분석</text>
+<text x="260" y="200" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">조건, 어미 정리</text>
+<rect x="350" y="160" width="130" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+<text x="415" y="182" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#085041">hybrid 검색</text>
+<text x="415" y="200" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">dense+BM25+필터</text>
+<rect x="505" y="160" width="130" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+<text x="570" y="182" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#085041">리랭크</text>
+<text x="570" y="200" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">상위 20 → 5</text>
+<line x1="172" y1="188" x2="193" y2="188" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="327" y1="188" x2="348" y2="188" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="482" y1="188" x2="503" y2="188" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="415" y1="104" x2="415" y2="158" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M570 218 L570 240 L105 240 L105 260" fill="none" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="40" y="262" width="130" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+<text x="105" y="284" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#085041">거절 판단</text>
+<text x="105" y="302" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">점수 0.05 미만</text>
+<rect x="195" y="262" width="130" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+<text x="260" y="284" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#085041">LLM 생성</text>
+<text x="260" y="302" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">Gemini → Groq</text>
+<rect x="350" y="262" width="130" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+<text x="415" y="284" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#085041">출처 검증</text>
+<text x="415" y="302" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">인용 id 확인</text>
+<rect x="505" y="262" width="130" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+<text x="570" y="284" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#085041">답변 + 출처</text>
+<text x="570" y="302" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">또는 거절 사유</text>
+<line x1="172" y1="290" x2="193" y2="290" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="327" y1="290" x2="348" y2="290" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="482" y1="290" x2="503" y2="290" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="40" y="360" font-size="14" font-weight="600" fill="#2C2C2A">공개 데모 (GitHub Pages, 서버 없음)</text>
+<rect x="40" y="372" width="130" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="105" y="394" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#444441">export-demo</text>
+<text x="105" y="412" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">답변 기록 저장</text>
+<rect x="195" y="372" width="130" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="260" y="394" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#444441">demo-data</text>
+<text x="260" y="412" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">JSON 파일</text>
+<rect x="350" y="372" width="130" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="415" y="394" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#444441">React 재생</text>
+<text x="415" y="412" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">LLM 호출 없음</text>
+<line x1="172" y1="400" x2="193" y2="400" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="327" y1="400" x2="348" y2="400" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#a)"/>
+</svg>
