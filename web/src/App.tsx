@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { askQuestion, fetchMeta } from "./api";
+import { type Catalog, loadCatalog } from "./catalog";
 import { AnswerView } from "./components/AnswerView";
 import { AuthBar } from "./components/AuthBar";
+import { CatalogView } from "./components/CatalogView";
 import { ConditionPanel } from "./components/ConditionPanel";
 import { EvalView } from "./components/EvalView";
 import { SavedView } from "./components/SavedView";
@@ -33,12 +35,14 @@ const EXAMPLES = [
 export default function App() {
 	const [meta, setMeta] = useState<Meta | null>(null);
 	const [demo, setDemo] = useState<DemoData | null>(null);
+	const [catalog, setCatalog] = useState<Catalog | null>(null);
+	const [catalogError, setCatalogError] = useState<string | null>(null);
 	const [question, setQuestion] = useState("");
 	const [condition, setCondition] = useState(EMPTY_CONDITION);
 	const [loading, setLoading] = useState(false);
 	const [result, setResult] = useState<AskResponse | null>(null);
 	const [error, setError] = useState<string | null>(null);
-	const [tab, setTab] = useState<"ask" | "saved" | "eval">("ask");
+	const [tab, setTab] = useState<"ask" | "find" | "saved" | "eval">("ask");
 	const session = useAuth();
 	const userId = session?.user.id ?? null;
 	const [bookmarks, setBookmarks] = useState<SavedNotice[]>([]);
@@ -47,6 +51,11 @@ export default function App() {
 	useEffect(() => {
 		const load = DEMO ? loadDemo().then(setDemo) : fetchMeta().then(setMeta);
 		load.catch((e: Error) => setError(e.message));
+		if (DEMO) {
+			loadCatalog()
+				.then(setCatalog)
+				.catch((e: Error) => setCatalogError(e.message));
+		}
 	}, []);
 
 	useEffect(() => {
@@ -155,6 +164,7 @@ export default function App() {
 					{(
 						[
 							["ask", "질문"],
+							...(DEMO ? ([["find", "공고 찾기"]] as const) : []),
 							["saved", `저장함 (관심 공고 ${bookmarks.length})`],
 							["eval", "평가 결과"],
 						] as const
@@ -176,6 +186,15 @@ export default function App() {
 						</button>
 					))}
 				</nav>
+
+				{tab === "find" && (
+					<CatalogView
+						catalog={catalog}
+						bookmarks={bookmarks}
+						onToggleSave={(n, on) => void setSaved(n, on)}
+						error={catalogError}
+					/>
+				)}
 
 				{tab === "eval" && <EvalView />}
 

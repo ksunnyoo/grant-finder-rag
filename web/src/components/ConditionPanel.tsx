@@ -5,6 +5,8 @@ type Props = {
 	meta: Meta | null;
 	value: Condition;
 	onChange: (next: Condition) => void;
+	note?: string;
+	hideClosed?: boolean;
 };
 
 const SELECT_CLASS =
@@ -58,13 +60,19 @@ function Field(props: {
 	);
 }
 
-export function ConditionPanel({ meta, value, onChange }: Props) {
+export function ConditionPanel({
+	meta,
+	value,
+	onChange,
+	note,
+	hideClosed = false,
+}: Props) {
 	const error = conditionError(value);
 	return (
 		<div className="rounded-lg border border-slate-200 bg-white p-4">
 			<p className="mb-3 text-xs text-slate-500">
-				조건을 직접 고르면 질문에서 추출한 조건보다 우선합니다. 지역, 업력, 마감
-				시기는 질문에 적어도 자동으로 인식합니다.
+				{note ??
+					"조건을 직접 고르면 질문에서 추출한 조건보다 우선합니다. 지역, 업력, 마감 시기는 질문에 적어도 자동으로 인식합니다."}
 			</p>
 			<div className="grid gap-3 sm:grid-cols-3">
 				<Select
@@ -119,16 +127,18 @@ export function ConditionPanel({ meta, value, onChange }: Props) {
 					{error}
 				</p>
 			)}
-			<label className="mt-3 flex items-center gap-2 text-sm text-slate-700">
-				<input
-					type="checkbox"
-					checked={value.includeClosed}
-					onChange={(e) =>
-						onChange({ ...value, includeClosed: e.target.checked })
-					}
-				/>
-				마감된 공고도 포함
-			</label>
+			{!hideClosed && (
+				<label className="mt-3 flex items-center gap-2 text-sm text-slate-700">
+					<input
+						type="checkbox"
+						checked={value.includeClosed}
+						onChange={(e) =>
+							onChange({ ...value, includeClosed: e.target.checked })
+						}
+					/>
+					마감된 공고도 포함
+				</label>
+			)}
 		</div>
 	);
 }
