@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 
 from grant_finder_rag.bootstrap import build_llm, build_retriever, refuse_threshold
 from grant_finder_rag.generation.answer import AnswerGenerator
-from grant_finder_rag.retrieval.query_analyzer import analyze_query
+from grant_finder_rag.retrieval.query_analyzer import analyze_query, search_query
 from grant_finder_rag.service import AskService
 
 GOLDEN = Path("data/golden/golden.jsonl")
@@ -36,7 +36,7 @@ def load_golden(path):
         return [json.loads(line) for line in f if line.strip()]
 
 
-def eval_retrieval(retriever, items, as_of, k):
+def eval_retrieval(retriever, items, as_of, k, strip=False):
     report = {}
     for name, cfg in CONFIGS.items():
         hits, rrs, times = [], [], []
@@ -48,8 +48,12 @@ def eval_retrieval(retriever, items, as_of, k):
                 continue
             filters = analyze_query(it["question"], as_of) if cfg["use_filter"] else None
             started = time.perf_counter()
+            query = it["question"]
+            if strip:
+                has_cond = analyze_query(query, as_of).has_conditions()
+                query = search_query(query, has_cond)
             results, _ = retriever.retrieve(
-                it["question"], mode=cfg["mode"], top_k=k, rerank=cfg["rerank"], filters=filters
+                query, mode=cfg["mode"], top_k=k, rerank=cfg["rerank"], filters=filters
             )
             times.append((time.perf_counter() - started) * 1000)
             ids = [str(c.notice_id) for c in results[:k]]
@@ -130,6 +134,7 @@ def main():
     ap.add_argument("--golden", default=str(GOLDEN))
     ap.add_argument("--as-of", default=None)
     ap.add_argument("--skip-e2e", action="store_true")
+    ap.add_argument("--search-query", action="store_true", help="검색 단계에 search_query() 적용")
     ap.add_argument("--e2e-limit", type=int, default=12)
     ap.add_argument("--pause", type=float, default=7.0)
     ap.add_argument("--providers", default="gemini,groq")
@@ -142,7 +147,7 @@ def main():
     result = {"as_of": str(as_of), "k": args.k, "threshold": refuse_threshold(), "golden": args.golden}
     try:
         print("1단계: 검색 구성 비교 (LLM 없음)")
-        result["retrieval"] = eval_retrieval(retriever, items, as_of, args.k)
+        result["retrieval"] = eval_retrieval(retriever, items, as_of, args.k, args.search_query)
         if not args.skip_e2e:
             print("2단계: 종단 평가 (LLM 사용)")
             summary, rows = eval_e2e(

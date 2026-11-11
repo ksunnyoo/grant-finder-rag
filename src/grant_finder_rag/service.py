@@ -10,7 +10,11 @@ from grant_finder_rag.contracts.models import (
 )
 from grant_finder_rag.contracts.ports import RetrieverPort
 from grant_finder_rag.generation.answer import AnswerGenerator
-from grant_finder_rag.retrieval.query_analyzer import analyze_query, merge_filters
+from grant_finder_rag.retrieval.query_analyzer import (
+    analyze_query,
+    merge_filters,
+    search_query,
+)
 
 
 def _ms(started: float) -> int:
@@ -78,7 +82,7 @@ class AskService:
         stages["analyze"] = _ms(step)
 
         found, retrieval_stages = self.retriever.retrieve(
-            question,
+            search_query(question, filters.has_conditions()),
             mode=self.mode,
             candidates=self.candidates,
             top_k=self.top_k,

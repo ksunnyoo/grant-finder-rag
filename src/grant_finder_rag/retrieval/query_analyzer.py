@@ -91,6 +91,25 @@ def _end_range(question: str, as_of: date) -> tuple[date | None, date | None]:
     return None, None
 
 
+_REQUEST_TAIL = re.compile(
+    r"\s*(?:좀\s*)?(?:알려\s*(?:줘요|줘|줄래|주세요|주실래요)"
+    r"|찾아\s*(?:줘요|줘|주세요)|보여\s*(?:줘요|줘|주세요)"
+    r"|추천해\s*(?:줘요|줘|주세요)|궁금해요?)\s*[.?!~]*\s*$"
+)
+SHORT_TOPIC_MAX = 15
+
+
+def search_query(question: str, has_conditions: bool = False) -> str:
+    """조건이 없는 짧은 주제 질문의 요청 어미를 뗀 검색용 질문 (SDD 5.1.1)."""
+    text = question.strip()
+    if has_conditions:
+        return text
+    stripped = _REQUEST_TAIL.sub("", text).strip()
+    if stripped and stripped != text and len(stripped) <= SHORT_TOPIC_MAX:
+        return stripped
+    return text
+
+
 def analyze_query(
     question: str, as_of_date: date, extract_category: bool = False
 ) -> SearchFilters:
